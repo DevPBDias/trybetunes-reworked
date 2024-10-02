@@ -43,7 +43,7 @@ const Login = () => {
           />
         </button>
       </section>
-      <Link className="register-link" href="/register">
+      <Link className="register-link" href="/sign-up">
         Novo por aqui? Cadastre-se aqui.
       </Link>
     </form>

@@ -1,20 +1,20 @@
-import Login from "@/components/login";
+import Register from "@/components/register";
 import Image from "next/image";
-import heroLogin from "../assets/images/login-hero.png";
+import heroRegister from "../../assets/images/register-hero.png";
 
-export default function Home() {
+export default function SignUp() {
   return (
     <main className="container-hero">
       <picture className="container-hero-image">
         <Image
           className="hero"
-          src={heroLogin}
-          alt="Hero image for login"
+          src={heroRegister}
+          alt="Hero image for register"
           fill
           priority
         />
       </picture>
-      <Login />
+      <Register />
     </main>
   );
 }
