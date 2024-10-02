@@ -22,3 +22,10 @@ $glass-bg-color: #30372F;
     height: 100%;
   }
 }
+
+.container-dashboard {
+  background-color: $primary-color;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}

@@ -1,9 +1,13 @@
+"use client";
 import Link from "next/link";
 import "./styles.scss";
 import google from "../../assets/icons/google-icon.png";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const router = useRouter();
+
   return (
     <form className="login-form">
       <section className="container-title">
@@ -26,7 +30,11 @@ const Login = () => {
         </fieldset>
       </section>
       <section className="container-btns">
-        <button className="main-btn" type="submit">
+        <button
+          className="main-btn"
+          type="submit"
+          onClick={() => router.push("/dashboard")}
+        >
           Entrar
         </button>
         <div className="container-separator">
@@ -34,7 +42,11 @@ const Login = () => {
           <p>ou</p>
           <div></div>
         </div>
-        <button className="google-btn" type="submit">
+        <button
+          className="google-btn"
+          type="submit"
+          onClick={() => router.push("/dashboard")}
+        >
           <p>Entrar com </p>
           <Image
             className="google-icon"
