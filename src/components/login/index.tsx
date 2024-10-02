@@ -5,35 +5,47 @@ import Image from "next/image";
 
 const Login = () => {
   return (
-    <form>
-      <section>
-        <h1>Efetuar login</h1>
-        <p>Entre e ouça as melhores músicas do momento.</p>
+    <form className="login-form">
+      <section className="container-title">
+        <h1 className="login-title">Efetuar login</h1>
+        <p className="login-subtitle">
+          Entre e ouça as melhores músicas do momento.
+        </p>
       </section>
-      <fieldset>
-        <label htmlFor="email">E-mail</label>
-        <input type="text" name="email" id="email" />
-      </fieldset>
-      <fieldset>
-        <div>
+      <section className="container-inputs">
+        <fieldset className="container-field">
           <label htmlFor="email">E-mail</label>
-          <Link href="/redefine">Esqueceu a senha?</Link>
-        </div>
-        <input type="text" name="email" id="email" />
-      </fieldset>
-      <section>
-        <button type="submit">Entrar</button>
-        <div>
+          <input type="text" name="email" id="email" />
+        </fieldset>
+        <fieldset className="container-field">
+          <div className="container-pwd">
+            <label htmlFor="pwd">Senha</label>
+            <Link href="/redefine">Esqueceu a senha?</Link>
+          </div>
+          <input type="text" name="pwd" id="pwd" />
+        </fieldset>
+      </section>
+      <section className="container-btns">
+        <button className="main-btn" type="submit">
+          Entrar
+        </button>
+        <div className="container-separator">
           <div></div>
           <p>ou</p>
           <div></div>
         </div>
-        <button type="submit">
+        <button className="google-btn" type="submit">
           <p>Entrar com </p>
-          <Image src={google} alt="Google icon for login" />
+          <Image
+            className="google-icon"
+            src={google}
+            alt="Google icon for login"
+          />
         </button>
       </section>
-      <Link href="/register">Novo por aqui? Cadastre-se aqui.</Link>
+      <Link className="register-link" href="/register">
+        Novo por aqui? Cadastre-se aqui.
+      </Link>
     </form>
   );
 };
