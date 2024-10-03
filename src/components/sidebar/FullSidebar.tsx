@@ -1,37 +1,40 @@
 import Image from "next/image";
 import React from "react";
-import navArrow from "@/assets/icons/google-icon.png";
 import logo from "@/assets/icons/logoTrybe.png";
+import user from "@/assets/images/user.png";
 import Link from "next/link";
+import { ArrowLeftCircleIcon, Home, User2, Star, LogOut } from "lucide-react";
+
+const COLOR_ICON = "#c0c4c0";
 
 const FullSidebar = () => {
   return (
     <>
       <section>
         <div>
-          <Image src={navArrow} alt="arrow to shrink or expand sidebar" />
+          <ArrowLeftCircleIcon size={36} color={COLOR_ICON} />
           <Image src={logo} alt="logo trybeTunes sidebar" />
         </div>
         <div>
-          <Image src={navArrow} alt="arrow to shrink or expand sidebar" />
+          <Image src={user} alt="user image profile" />
           <p>Paulo Dias</p>
         </div>
       </section>
       <nav>
         <Link href="/dashboard">
-          <Image src={navArrow} alt="arrow to shrink or expand sidebar" />
+          <Home size={28} color={COLOR_ICON} />
           <p>Home</p>
         </Link>
         <Link href="/dashboard/profile">
-          <Image src={navArrow} alt="arrow to shrink or expand sidebar" />
+          <User2 size={28} color={COLOR_ICON} />
           <p>Perfil</p>
         </Link>
         <Link href="/dashboard/favorites">
-          <Image src={navArrow} alt="arrow to shrink or expand sidebar" />
+          <Star size={28} color={COLOR_ICON} />
           <p>Favoritos</p>
         </Link>
         <Link href="/">
-          <Image src={navArrow} alt="arrow to shrink or expand sidebar" />
+          <LogOut size={28} color={COLOR_ICON} />
           <p>Sair</p>
         </Link>
       </nav>
