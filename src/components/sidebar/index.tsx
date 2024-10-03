@@ -1,12 +1,20 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import FullSidebar from "./FullSidebar";
 import ShortSidebar from "./ShortSidebar";
+import "./styles.scss";
 
 const Sidebar = () => {
+  const [open, setOpen] = useState(true);
+
   return (
     <aside>
-      <FullSidebar />
-      <ShortSidebar />
+      {open ? (
+        <FullSidebar open={open} setOpen={setOpen} />
+      ) : (
+        <ShortSidebar open={open} setOpen={setOpen} />
+      )}
     </aside>
   );
 };

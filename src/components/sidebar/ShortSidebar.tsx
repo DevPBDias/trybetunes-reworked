@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 import logo from "@/assets/icons/logoTrybe.png";
@@ -5,21 +7,35 @@ import user from "@/assets/images/user.png";
 import Link from "next/link";
 import { ArrowLeftCircleIcon, Home, User2, Star, LogOut } from "lucide-react";
 
-const COLOR_ICON = "#c0c4c0";
+const COLOR_ICON = "#001400";
 
-const ShortSidebar = () => {
+interface SidebarProps {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const ShortSidebar = ({ open, setOpen }: SidebarProps) => {
   return (
     <>
-      <section>
-        <div>
-          <ArrowLeftCircleIcon size={28} color={COLOR_ICON} />
-          <Image src={logo} alt="logo trybeTunes sidebar" />
+      <section
+        className={`container-short-sidebar ${open ? "display-side" : ""}`}
+      >
+        <div className="upper-section">
+          <button
+            className="btn-display"
+            type="button"
+            onClick={() => setOpen(!open)}
+          >
+            <ArrowLeftCircleIcon size={28} color={COLOR_ICON} />
+          </button>
         </div>
-        <div>
-          <Image src={user} alt="user image profile" />
+        <div className="lower-section">
+          <picture>
+            <Image className="user" src={user} alt="user image profile" />
+          </picture>
         </div>
       </section>
-      <nav>
+      <nav className="nav-short">
         <Link href="/dashboard">
           <Home size={28} color={COLOR_ICON} />
         </Link>
@@ -29,10 +45,10 @@ const ShortSidebar = () => {
         <Link href="/dashboard/favorites">
           <Star size={28} color={COLOR_ICON} />
         </Link>
-        <Link href="/">
-          <LogOut size={28} color={COLOR_ICON} />
-        </Link>
       </nav>
+      <Link className="logout-btn" href="/">
+        <LogOut size={28} color={COLOR_ICON} />
+      </Link>
     </>
   );
 };
