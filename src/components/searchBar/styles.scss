@@ -18,11 +18,17 @@
             height: 100%;
             border-radius: .5rem;
             background-color: #EBFFEB;
+            font-size: .8rem;
+            font-weight: 400;
+            line-height: normal;
             color: #001400;
             padding-inline: 1rem 2.5rem;
 
             &::placeholder {
                 padding-inline: 1rem;
+                font-size: .8rem;
+                font-weight: 400;
+                line-height: normal;
             }
         }
     }

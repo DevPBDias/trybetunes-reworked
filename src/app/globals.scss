@@ -56,4 +56,37 @@ $glass-bg-color: #30372F;
     padding-inline: 3rem;
     margin-top: 3rem;
   }
+
+  .text-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    z-index: 2;
+    top: 140px;
+    left: 0;
+    padding-inline: 3rem;
+    margin-top: 3rem;
+    width: 620px;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 400;
+      line-height: normal;
+      color: $secondary-color;
+    }
+
+    a {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: center;
+      gap: .5rem;
+      background-color: $terciary-color;
+      padding: .5rem 2.5rem;
+      margin-top: 2rem;
+      border-radius: .5rem;
+    }
+  }
 }
