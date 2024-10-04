@@ -11,9 +11,16 @@ const AlbumCard = () => {
       className="container-album-card"
       onClick={() => route.push("dashboard/1")}
     >
-      <picture className="container-album-image">
-        <Image className="album-image" src={albumImage} alt="album image" />
-      </picture>
+      <main className="container-album-image">
+        <Image
+          className="album-image"
+          src={albumImage}
+          alt="album image"
+          quality={100}
+          priority
+          placeholder="blur"
+        />
+      </main>
       <div className="text-album-content">
         <p>Album name</p>
         <span>Artist name</span>

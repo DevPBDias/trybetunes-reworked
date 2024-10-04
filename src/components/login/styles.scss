@@ -12,11 +12,10 @@
     opacity: 90%;
     width: 35%;
     height: 100%;
-    padding-inline: 3rem;
 
     .container-title {
         width: 100%;
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
 
         .login-title{
             font-size: 2rem;
@@ -34,7 +33,7 @@
 
     .container-inputs {
         width: 100%;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
         display: flex;
         flex-flow: column nowrap;
         gap: 1.5rem;
@@ -78,7 +77,7 @@
 
     .container-btns {
         width: 100%;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
         display: flex;
         flex-flow: column nowrap;
         gap: 1rem;

@@ -5,15 +5,15 @@ import heroRegister from "../../assets/images/register-hero.png";
 export default function SignUp() {
   return (
     <main className="container-hero">
-      <picture className="container-hero-image">
-        <Image
-          className="hero"
-          src={heroRegister}
-          alt="Hero image for register"
-          fill
-          priority
-        />
-      </picture>
+      <Image
+        src={heroRegister}
+        alt="Hero image for register"
+        style={{ objectFit: "cover" }}
+        fill
+        quality={100}
+        priority
+        placeholder="blur"
+      />
       <Register />
     </main>
   );

@@ -9,14 +9,15 @@ import PlayerCardMusic from "@/components/playerCard";
 const Dashboard = () => {
   return (
     <main className="container-dashboard">
-      <picture className="hero-container-image">
-        <Image
-          className="hero-image"
-          src={heroImg}
-          alt="main hero image"
-          priority
-        />
-      </picture>
+      <Image
+        src={heroImg}
+        alt="main hero image"
+        style={{ objectFit: "cover" }}
+        fill
+        quality={100}
+        priority
+        placeholder="blur"
+      />
       <section className="container-content">
         <section className="container-seach-date">
           <SearchBar />

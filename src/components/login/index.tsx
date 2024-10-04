@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import "./styles.scss";
 import google from "../../assets/icons/google-icon.png";
