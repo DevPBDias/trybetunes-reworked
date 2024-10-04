@@ -41,52 +41,84 @@ $glass-bg-color: #30372F;
     left: 0;
     width: 100%;
     height: 100%;
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+    }
   }
 
-  .container-seach-date {
+  .container-content {
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100%;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
     position: absolute;
     z-index: 2;
     top: 0;
     left: 0;
-    padding-inline: 3rem;
-    margin-top: 3rem;
-  }
+    width: 100%;
+    height: 100%;
+    padding: 3rem;
+    gap: 5rem;
 
-  .text-container {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    position: absolute;
-    z-index: 2;
-    top: 140px;
-    left: 0;
-    padding-inline: 3rem;
-    margin-top: 3rem;
-    width: 620px;
-
-    h1 {
-      font-size: 3rem;
-      font-weight: 400;
-      line-height: normal;
-      color: $secondary-color;
-    }
-
-    a {
+    .container-seach-date {
       display: flex;
       flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+    }
+  
+    .text-container {
+      display: flex;
+      flex-flow: column nowrap;
       justify-content: center;
-      align-items: center;
-      gap: .5rem;
-      background-color: $terciary-color;
-      padding: .5rem 2.5rem;
-      margin-top: 2rem;
-      border-radius: .5rem;
+      align-items: flex-start;
+      width: 100%;
+      gap: 1.5rem;
+  
+      h1 {
+        font-size: 3.2rem;
+        font-weight: 700;
+        line-height: normal;
+        color: $secondary-color;
+      }
+  
+      a {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: .5rem;
+        background-color: $terciary-color;
+        padding: .5rem 2.5rem;
+        border-radius: .5rem;
+
+        p {
+          font-size: 1rem;
+          font-weight: 700;
+          line-height: normal;
+          color: $secondary-color;
+        }
+      }
+    }
+
+    .container-musics {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 100%;
+      border: 1px solid red;
+      min-height: 300px;
+
+      h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: normal;
+        color: $secondary-color;
+      }
     }
   }
 }
