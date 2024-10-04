@@ -1,0 +1,41 @@
+.form-searchbar {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    height: 2rem;
+    background-color: #EBFFEB;
+    border-radius: .5rem;
+
+    fieldset {
+        width: 100%;
+        height: 100%;
+
+        input {
+            width: 100%;
+            height: 100%;
+            border-radius: .5rem;
+            background-color: #EBFFEB;
+            color: #001400;
+            padding-inline: 1rem 2.5rem;
+
+            &::placeholder {
+                padding-inline: 1rem;
+            }
+        }
+    }
+
+    button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        height: 100%;
+        padding-inline: .5rem;
+        border-radius: .5rem;
+        cursor: pointer;
+        background-color: transparent;
+    }
+}

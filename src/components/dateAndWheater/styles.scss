@@ -2,18 +2,19 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     padding: 1rem;
     background-color: #EBFFEB;
-    border: 1px solid red;
     width: fit-content;
     border-radius: .5rem;
+    gap: .5rem;
 
     .container-date, .container-wheater {
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
         align-items: center;
+        gap: .5rem;
 
         p {
             font-size: 0.8rem;

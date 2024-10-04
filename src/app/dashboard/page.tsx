@@ -1,10 +1,14 @@
 import DateAndWheater from "@/components/dateAndWheater";
+import SearchBar from "@/components/searchBar";
 
 const Dashboard = () => {
   return (
     <main className="container-dashboard">
       Dashboard
-      <DateAndWheater />
+      <section className="container-seach-date">
+        <SearchBar />
+        <DateAndWheater />
+      </section>
     </main>
   );
 };

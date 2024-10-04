@@ -32,4 +32,13 @@ $glass-bg-color: #30372F;
   background-color: $primary-color;
   width: 100%;
   height: 100vh;
+  padding: 3rem;
+
+  .container-seach-date {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
 }
