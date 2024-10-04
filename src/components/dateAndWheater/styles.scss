@@ -1,0 +1,26 @@
+.container-info {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: #EBFFEB;
+    border: 1px solid red;
+    width: fit-content;
+    border-radius: .5rem;
+
+    .container-date, .container-wheater {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            font-size: 0.8rem;
+            font-weight: 400;
+            line-height: normal;
+            color: #001400;
+        }
+
+    }
+}

@@ -1,10 +1,10 @@
-import Sidebar from "@/components/sidebar";
+import DateAndWheater from "@/components/dateAndWheater";
 
 const Dashboard = () => {
   return (
     <main className="container-dashboard">
       Dashboard
-      <Sidebar />
+      <DateAndWheater />
     </main>
   );
 };

@@ -3,14 +3,12 @@
 }
 
 aside {
-    position: fixed;
-    top: 0;
-    left: 0;
     background-color: #EBFFEB;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
     align-items: center;
+    width: fit-content;
     height: 100vh;
     padding-block: 1.5rem;
 
@@ -150,7 +148,7 @@ aside {
         align-items: center;
         width: 72px;
         padding: 1rem;
-        gap: 1rem;
+        gap: 1.5rem;
         border-bottom: 2px solid #30372F;
 
         .upper-section{
@@ -228,7 +226,6 @@ aside {
         width: 100%;
         padding: 1rem;
         gap: 1rem;
-        border: 1px solid red;
         margin-bottom: auto;
 
         a {
