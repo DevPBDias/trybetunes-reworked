@@ -4,6 +4,7 @@ import Image from "next/image";
 import heroImg from "@/assets/images/main-hero.png";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import PlayerCardMusic from "@/components/playerCard";
 
 const Dashboard = () => {
   return (
@@ -36,7 +37,14 @@ const Dashboard = () => {
         </section>
         <section className="container-musics">
           <h3>Descubra novas músicas todo dia</h3>
-          <div>card</div>
+          <div className="container-cards">
+            <PlayerCardMusic />
+            <PlayerCardMusic />
+            <PlayerCardMusic />
+            <PlayerCardMusic />
+            <PlayerCardMusic />
+            <PlayerCardMusic />
+          </div>
         </section>
       </section>
     </main>
