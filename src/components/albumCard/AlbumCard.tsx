@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import albumImage from "@/assets/images/album.png";
 import "./styles.scss";
@@ -9,7 +11,7 @@ const AlbumCard = () => {
   return (
     <section
       className="container-album-card"
-      onClick={() => route.push("dashboard/1")}
+      onClick={() => route.push("album/1")}
     >
       <main className="container-album-image">
         <Image
