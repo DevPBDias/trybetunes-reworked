@@ -13,14 +13,14 @@ const AlbumID = () => {
         <SearchBar />
         <DateAndWheater />
       </section>
-      <section>
-        <section>
+      <section className="container-content">
+        <section className="first-content-albums">
           <picture>
-            <Image src={album} alt="album image" />
+            <Image className="album-image-big" src={album} alt="album image" />
           </picture>
-          <div>
+          <div className="related-albums">
             <h3>Veja outros álbuns</h3>
-            <div>
+            <div className="container-related">
               <AlbumCard />
               <AlbumCard />
               <AlbumCard />
@@ -28,13 +28,13 @@ const AlbumID = () => {
             </div>
           </div>
         </section>
-        <section>
-          <div>
+        <section className="second-content-albums">
+          <div className="info-album">
             <h1>Album name do Linkin Park</h1>
             <p>Lançado em: 2003</p>
             <p>Este álbum possui 20 músicas</p>
           </div>
-          <div>
+          <div className="container-musics">
             <PlayerCardMusic />
             <PlayerCardMusic />
             <PlayerCardMusic />
