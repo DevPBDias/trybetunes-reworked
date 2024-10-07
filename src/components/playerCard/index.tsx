@@ -29,10 +29,10 @@ const AlbumCard = ({
         <div className="text-content">
           <p>{albumName}</p>
           <span>{artistName}</span>
+          <div className="second-container">
+            <PlayCircle className="icon" size={32} color="#EBFFEB" />
+          </div>
         </div>
-      </div>
-      <div className="second-container">
-        <PlayCircle className="icon" size={24} color="#001400" />
       </div>
     </section>
   );

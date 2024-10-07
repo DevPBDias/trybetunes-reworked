@@ -7,13 +7,15 @@
     width: 240px;
     height: 240px;
     border-radius: .5rem;
+    position: relative;
     
     &:hover {
         background-color: #cbffcb;
     }
     
     .first-content {
-        position: relative;
+        position: absolute;
+        z-index: 1;
         display: flex;
         flex-flow: column nowrap;
         justify-content: center;
@@ -37,6 +39,7 @@
             position: absolute;
             top: 0;
             left: 0;
+            z-index: 1;
             display: flex;
             flex-flow: column wrap;
             justify-content: center;
@@ -53,6 +56,23 @@
              span {
                 opacity: 0;
              }
+
+             .second-container {
+                position: absolute;
+                z-index: 2;
+                top: 1rem;
+                right: 1rem;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+                cursor: pointer;
+        
+                .icon {
+                    opacity: 0;
+                }
+            }
 
 
             &:hover {
@@ -74,19 +94,11 @@
                     line-height: normal;
                     color: #EBFFEB;
                 }
+
+                .second-container > .icon {
+                    opacity: 1;
+                }
             }
-        }
-    }
-
-    .second-container {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-
-        .icon {
-            cursor: pointer;
         }
     }
 }
