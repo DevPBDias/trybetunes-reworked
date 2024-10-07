@@ -6,19 +6,19 @@ import Image from "next/image";
 import heroImg from "@/assets/images/main-hero.png";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import PlayerCardMusic from "@/components/playerCard";
+import AlbumCard from "@/components/playerCard";
 import { useEffect, useState } from "react";
-import { searchAlbumsAPI } from "@/services/musicData";
-import { chooseRandomId } from "@/utils";
+import { musicCoreApi } from "@/services/musicData";
 
 const Dashboard = () => {
   const [data, setData] = useState<any>();
 
   useEffect(() => {
     const saveData = async () => {
-      const getRandomArtist = chooseRandomId();
-      const getAlbums = await searchAlbumsAPI(getRandomArtist);
-      const slicedAlbums = getAlbums.slice(0, 6);
+      const { chart_items } = await musicCoreApi(
+        "chart/albums/?time_period=day&per_page=10&page=1"
+      );
+      const slicedAlbums = chart_items.slice(0, 6);
       setData(slicedAlbums);
     };
     saveData();
@@ -56,12 +56,13 @@ const Dashboard = () => {
           <h3>Descubra novas músicas todo dia</h3>
           <div className="container-cards">
             {data ? (
-              data?.map((album: any, index: number) => (
-                <PlayerCardMusic
-                  albumImg={album.artworkUrl100}
-                  songName={album.collectionName}
-                  key={album.collectionId}
-                  artistName={album.artistName}
+              data?.map((album: any) => (
+                <AlbumCard
+                  key={album.item.id}
+                  albumId={album.item.id}
+                  albumImg={album.item.cover_art_thumbnail_url}
+                  albumName={album.item.name}
+                  artistName={album.item.artist.name}
                 />
               ))
             ) : (

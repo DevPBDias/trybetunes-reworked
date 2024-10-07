@@ -1,20 +1,33 @@
+"use client";
 import { EllipsisIcon, PlayCircle, Heart } from "lucide-react";
 import "./styles.scss";
+import { useRouter } from "next/navigation";
 interface PlayerProps {
   albumImg: string;
-  songName: string;
+  albumName: string;
   artistName: string;
+  albumId: string;
 }
 
-const PlayerCardMusic = ({ artistName, albumImg, songName }: PlayerProps) => {
+const AlbumCard = ({
+  artistName,
+  albumImg,
+  albumName,
+  albumId,
+}: PlayerProps) => {
+  const router = useRouter();
+
   return (
-    <section className="container-card">
+    <section
+      className="container-card"
+      onClick={() => router.push(`/dashboard/album/${albumId}`)}
+    >
       <div className="first-content">
         <picture className="container-album-image">
           <img className="album-image" src={albumImg} alt="album image" />
         </picture>
         <div className="text-content">
-          <p>{songName}</p>
+          <p>{albumName}</p>
           <span>{artistName}</span>
         </div>
       </div>
@@ -25,4 +38,4 @@ const PlayerCardMusic = ({ artistName, albumImg, songName }: PlayerProps) => {
   );
 };
 
-export default PlayerCardMusic;
+export default AlbumCard;

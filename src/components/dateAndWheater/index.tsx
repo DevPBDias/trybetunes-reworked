@@ -1,3 +1,5 @@
+"use client";
+
 import { Sun, Calendar } from "lucide-react";
 import "./styles.scss";
 import { getTodayDate } from "@/utils";

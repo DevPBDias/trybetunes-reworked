@@ -7,8 +7,6 @@ async function getPMWData() {
   );
 
   const requestJson = await response.json();
-  console.log(requestJson);
-  
 
   if (!response.ok) {
     throw new Error("Failed to fetch data");

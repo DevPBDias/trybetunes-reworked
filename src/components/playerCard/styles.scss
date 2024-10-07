@@ -1,27 +1,28 @@
 .container-card {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     justify-content: space-between;
     align-items: center;
     background-color: #EBFFEB;
-    padding: .75rem 1.5rem;
-    width: 100%;
+    width: 240px;
+    height: 240px;
     border-radius: .5rem;
-
+    
     &:hover {
         background-color: #cbffcb;
     }
-
+    
     .first-content {
+        position: relative;
         display: flex;
-        flex-flow: row nowrap;
+        flex-flow: column nowrap;
         justify-content: center;
         align-items: center;
         gap: 1rem;
         
         .container-album-image {
-            width: 4em;
-            height: 4em;
+            width: 100%;
+            height: 100%;
             border-radius: .5rem;
             
             .album-image {
@@ -33,25 +34,46 @@
         }
         
         .text-content {
+            position: absolute;
+            top: 0;
+            left: 0;
             display: flex;
-            flex-flow: column nowrap;
+            flex-flow: column wrap;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             cursor: pointer;
+            width: 100%;
+            height: 100%;
             gap: 0.25rem;
 
             p {
-                font-size: 1rem;
-                font-weight: 700;
-                line-height: normal;
-                color: #001400;
-            }
+                opacity: 0;
+             }
+ 
+             span {
+                opacity: 0;
+             }
 
-            span {
-                font-size: .7rem;
-                font-weight: 400;
-                line-height: normal;
-                color: #001400;
+
+            &:hover {
+                background-color: #001400;
+                opacity: 80%;
+
+                p {
+                    opacity: 1;
+                    font-size: .8rem;
+                    font-weight: 700;
+                    line-height: normal;
+                    color: #EBFFEB;
+                }
+    
+                span {
+                    opacity: 1;
+                    font-size: .6rem;
+                    font-weight: 400;
+                    line-height: normal;
+                    color: #EBFFEB;
+                }
             }
         }
     }
