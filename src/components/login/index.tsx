@@ -32,7 +32,6 @@ const Login = () => {
   };
 
   const handleClick = (data: FormData) => {
-    console.log(data);
     resetForm();
     router.push("/dashboard");
   };

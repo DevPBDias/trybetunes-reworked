@@ -1,7 +1,5 @@
-const url = 'https://itunes.apple.com/lookup?amgArtistId=468749,5723&entity=song&limit=5&sort=recent'
-
-const getMusics = async (id: string | undefined) => {
-  const request = await fetch(`https://itunes.apple.com/lookup?id=${id}&entity=album&limit=6`);
+const getMusics = async (id: string) => {
+  const request = await fetch(`https://itunes.apple.com/lookup?id=${id}&entity=album`);
   const requestJson = await request.json();
   return requestJson.results;
 };
@@ -45,6 +43,7 @@ const searchAlbumsAPI = async (artist: any) => {
       trackCount,
     }),
   );
+
   return response;
 };
 

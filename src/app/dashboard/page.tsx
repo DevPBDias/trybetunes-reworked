@@ -8,18 +8,18 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import PlayerCardMusic from "@/components/playerCard";
 import { useEffect, useState } from "react";
-import { getMusics } from "@/services/musicData";
+import { searchAlbumsAPI } from "@/services/musicData";
+import { chooseRandomId } from "@/utils";
 
 const Dashboard = () => {
   const [data, setData] = useState<any>();
 
   useEffect(() => {
     const saveData = async () => {
-      const api3 = await getMusics("909253");
-      const getOnlySongs = api3.filter(
-        (item: any) => item.wrapperType === "collection"
-      );
-      setData(getOnlySongs);
+      const getRandomArtist = chooseRandomId();
+      const getAlbums = await searchAlbumsAPI(getRandomArtist);
+      const slicedAlbums = getAlbums.slice(0, 6);
+      setData(slicedAlbums);
     };
     saveData();
   }, []);
