@@ -1,29 +1,25 @@
 import { EllipsisIcon, PlayCircle, Heart } from "lucide-react";
-import Image from "next/image";
-import album from "@/assets/images/album.png";
 import "./styles.scss";
+interface PlayerProps {
+  albumImg: string;
+  songName: string;
+  artistName: string;
+}
 
-const PlayerCardMusic = () => {
+const PlayerCardMusic = ({ artistName, albumImg, songName }: PlayerProps) => {
   return (
     <section className="container-card">
       <div className="first-content">
-        <EllipsisIcon className="icon" size={24} color="#001400" />
         <picture className="container-album-image">
-          <Image
-            className="album-image"
-            src={album}
-            alt="main hero image"
-            priority
-          />
+          <img className="album-image" src={albumImg} alt="album image" />
         </picture>
         <div className="text-content">
-          <p>Song name</p>
-          <span>Artist name</span>
+          <p>{songName}</p>
+          <span>{artistName}</span>
         </div>
       </div>
       <div className="second-container">
         <PlayCircle className="icon" size={24} color="#001400" />
-        <Heart className="icon" size={24} color="#001400" />
       </div>
     </section>
   );

@@ -9,7 +9,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { inputSchema } from "@/schemas";
-import Title from "./Title";
+import Title from "../common/Title";
 import Separator from "./Separator";
 
 type FormData = z.infer<typeof inputSchema>;

@@ -2,16 +2,15 @@ import Link from "next/link";
 import "./styles.scss";
 import google from "../../assets/icons/google-icon.png";
 import Image from "next/image";
+import Title from "../common/Title";
 
 const Register = () => {
   return (
     <form className="register-form">
-      <section className="container-title">
-        <h1 className="register-title">Efetuar cadastro</h1>
-        <p className="register-subtitle">
-          Registre-se para desfrutar das melhores músicas do momento.
-        </p>
-      </section>
+      <Title
+        title="Efetuar cadastro"
+        subtitle="Registre-se para desfrutar das melhores músicas do momento."
+      />
       <section className="container-inputs">
         <div className="container-user">
           <fieldset className="container-field">

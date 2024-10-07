@@ -1,3 +1,5 @@
+"use client";
+
 import DateAndWheater from "@/components/dateAndWheater";
 import SearchBar from "@/components/searchBar";
 import Image from "next/image";
@@ -5,8 +7,23 @@ import heroImg from "@/assets/images/main-hero.png";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import PlayerCardMusic from "@/components/playerCard";
+import { useEffect, useState } from "react";
+import { getMusics } from "@/services/musicData";
 
 const Dashboard = () => {
+  const [data, setData] = useState<any>();
+
+  useEffect(() => {
+    const saveData = async () => {
+      const api3 = await getMusics("909253");
+      const getOnlySongs = api3.filter(
+        (item: any) => item.wrapperType === "collection"
+      );
+      setData(getOnlySongs);
+    };
+    saveData();
+  }, []);
+
   return (
     <main className="container-dashboard">
       <Image
@@ -15,7 +32,6 @@ const Dashboard = () => {
         style={{ objectFit: "cover" }}
         fill
         quality={100}
-        priority
         placeholder="blur"
       />
       <section className="container-content">
@@ -39,12 +55,18 @@ const Dashboard = () => {
         <section className="container-musics">
           <h3>Descubra novas músicas todo dia</h3>
           <div className="container-cards">
-            <PlayerCardMusic />
-            <PlayerCardMusic />
-            <PlayerCardMusic />
-            <PlayerCardMusic />
-            <PlayerCardMusic />
-            <PlayerCardMusic />
+            {data ? (
+              data?.map((album: any, index: number) => (
+                <PlayerCardMusic
+                  albumImg={album.artworkUrl100}
+                  songName={album.collectionName}
+                  key={album.collectionId}
+                  artistName={album.artistName}
+                />
+              ))
+            ) : (
+              <p>Loading...</p>
+            )}
           </div>
         </section>
       </section>
