@@ -1,14 +1,47 @@
+export type IArtist = {
+  artistId: number,
+  artistName: string,
+  collectionId: number,
+  collectionName: string,
+  collectionPrice: number,
+  artworkUrl100: string,
+  releaseDate: string,
+  trackCount: number
+}
 
-export const musicCoreApi = async (url: string) => {
-    const baseUrl = 'https://genius-song-lyrics1.p.rapidapi.com/';
-    const headers = {
-      'X-rapidapi-Host': 'genius-song-lyrics1.p.rapidapi.com',
-      'X-RapidAPI-Key': '1a0907c536msh398875db943bbdep12889cjsn97c830d10ae1',
-    }
+export const getMusics = async (id: string | undefined) => {
+  const request = await fetch(`https://itunes.apple.com/lookup?id=${id}&entity=song`);
+  const requestJson = await request.json();
+  return requestJson.results;
+};
 
-    const response = await fetch(`${baseUrl}${url}`, {headers})
-    const data = await response.json();
-    console.log(data);
+export const searchAlbumsAPI = async (artist: any) => {
+  const artistNameURL = encodeURI(artist).replaceAll('%20', '+');
 
-    return data
-  }
+  const getAlbumsAPI = `https://itunes.apple.com/search?entity=album&term=${artistNameURL}&attribute=allArtistTerm`;
+  const APIResponse = await fetch(getAlbumsAPI);
+  const { results } = await APIResponse.json();
+
+  const response: IArtist[] = results.map(
+    ({
+      artistId,
+      artistName,
+      collectionId,
+      collectionName,
+      collectionPrice,
+      artworkUrl100,
+      releaseDate,
+      trackCount,
+    }: IArtist) => ({
+      artistId,
+      artistName,
+      collectionId,
+      collectionName,
+      collectionPrice,
+      artworkUrl100,
+      releaseDate,
+      trackCount,
+    }),
+  );
+  return response;
+};

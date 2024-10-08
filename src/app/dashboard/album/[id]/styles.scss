@@ -45,8 +45,9 @@
             .related-albums {
                 display: flex;
                 flex-flow: column nowrap;
-                justify-content: center;
+                justify-content: flex-start;
                 align-items: center;
+                width: 100%;
                 gap: 1.5rem;
 
                 h3 {
@@ -59,12 +60,10 @@
 
                 .container-related {
                     display: flex;
-                    flex-flow: row nowrap;
-                    justify-content: center;
-                    align-items: center;
+                    flex-flow: row wrap;
+                    justify-content: space-between;
+                    align-items: flex-start;
                     width: 100%;
-                    gap: .5rem;
-                    border: 1px solid red;
                     height: 240px;
                 }
             }

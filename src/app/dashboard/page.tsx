@@ -6,19 +6,17 @@ import Image from "next/image";
 import heroImg from "@/assets/images/main-hero.png";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import AlbumCard from "@/components/playerCard";
+import AlbumCard from "@/components/album";
 import { useEffect, useState } from "react";
-import { musicCoreApi } from "@/services/musicData";
+import { searchAlbumsAPI } from "@/services/musicData";
 
 const Dashboard = () => {
   const [data, setData] = useState<any>();
 
   useEffect(() => {
     const saveData = async () => {
-      const { chart_items } = await musicCoreApi(
-        "chart/albums/?time_period=day&per_page=10&page=1"
-      );
-      const slicedAlbums = chart_items.slice(0, 6);
+      const data = await searchAlbumsAPI("Michael");
+      const slicedAlbums = data.slice(0, 6);
       setData(slicedAlbums);
     };
     saveData();
@@ -47,7 +45,7 @@ const Dashboard = () => {
             <br />
             mundo da música
           </h1>
-          <Link href="/dashboard/music">
+          <Link href={`/dashboard/album/${data?.collectionId}`}>
             <p>Descubra</p>
             <ArrowUpRight size={24} color="#EBFFEB" />
           </Link>
@@ -58,11 +56,11 @@ const Dashboard = () => {
             {data ? (
               data?.map((album: any) => (
                 <AlbumCard
-                  key={album.item.id}
-                  albumId={album.item.id}
-                  albumImg={album.item.cover_art_thumbnail_url}
-                  albumName={album.item.name}
-                  artistName={album.item.artist.name}
+                  key={album.collectionId}
+                  albumId={album.collectionId}
+                  albumImg={album.artworkUrl100}
+                  albumName={album.collectionName}
+                  artistName={album.artistName}
                 />
               ))
             ) : (

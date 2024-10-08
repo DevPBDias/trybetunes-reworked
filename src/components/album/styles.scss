@@ -8,6 +8,7 @@
     height: 240px;
     border-radius: .5rem;
     position: relative;
+
     
     &:hover {
         background-color: #cbffcb;
@@ -15,17 +16,21 @@
     
     .first-content {
         position: absolute;
+        top: 0;
+        left: 0;
         z-index: 1;
         display: flex;
         flex-flow: column nowrap;
         justify-content: center;
         align-items: center;
         gap: 1rem;
+        width: 100%;
+        height: 100%;
+        
         
         .container-album-image {
             width: 100%;
             height: 100%;
-            border-radius: .5rem;
             
             .album-image {
                 width: 100%;
@@ -47,11 +52,16 @@
             cursor: pointer;
             width: 100%;
             height: 100%;
+            padding-inline: 1rem;
             gap: 0.25rem;
 
             p {
                 opacity: 0;
-             }
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 100%;
+            }
  
              span {
                 opacity: 0;
@@ -66,7 +76,6 @@
                 flex-flow: row nowrap;
                 justify-content: center;
                 align-items: center;
-                gap: 1rem;
                 cursor: pointer;
         
                 .icon {
@@ -85,6 +94,7 @@
                     font-weight: 700;
                     line-height: normal;
                     color: #EBFFEB;
+                    text-align: center;
                 }
     
                 span {

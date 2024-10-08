@@ -1,6 +1,6 @@
 "use client";
 
-import AlbumCard from "@/components/albumCard/AlbumCard";
+import AlbumCard from "@/components/player";
 import DateAndWheater from "@/components/dateAndWheater";
 import SearchBar from "@/components/searchBar";
 import { useState } from "react";
