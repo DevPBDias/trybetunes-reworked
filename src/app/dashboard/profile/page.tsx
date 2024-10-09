@@ -11,11 +11,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import "./profile.scss";
 import { useRouter } from "next/navigation";
+import { useMusicContext } from "@/context/music-provider";
 
 type FormData = z.infer<typeof profileSchema>;
 
 const ProfilePage = () => {
   const router = useRouter();
+  const { setUserName } = useMusicContext();
 
   const {
     register,
@@ -28,9 +30,11 @@ const ProfilePage = () => {
 
   const handleEdit = (data: FormData) => {
     console.log(data);
+    const joinName = data.firstName.concat(" ", data.lastName);
+    setUserName(joinName);
     if (isSubmitSuccessful) {
       localStorage.setItem("profile", JSON.stringify(data));
-      reset({ email: "", fisrtName: "", lastName: "", address: "" });
+      reset({ email: "", firstName: "", lastName: "", address: "" });
       router.push("/dashboard");
     }
   };
@@ -58,12 +62,12 @@ const ProfilePage = () => {
               <label htmlFor="firstName">Nome</label>
               <input
                 type="text"
-                className={`${errors.fisrtName ? "error-border" : ""}`}
-                {...register("fisrtName")}
+                className={`${errors.firstName ? "error-border" : ""}`}
+                {...register("firstName")}
                 id="firstName"
               />
-              {errors.fisrtName && (
-                <span className="error-msg">{errors.fisrtName.message}</span>
+              {errors.firstName && (
+                <span className="error-msg">{errors.firstName.message}</span>
               )}
             </fieldset>
             <fieldset className="container-field">
@@ -111,7 +115,7 @@ const ProfilePage = () => {
             className="btn-profile"
             type="button"
             onClick={() =>
-              reset({ email: "", fisrtName: "", lastName: "", address: "" })
+              reset({ email: "", firstName: "", lastName: "", address: "" })
             }
           >
             <p>Limpar</p>

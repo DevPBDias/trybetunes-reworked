@@ -6,6 +6,7 @@ import logo from "@/assets/icons/logoTrybe.png";
 import user from "@/assets/images/user.png";
 import Link from "next/link";
 import { ArrowLeftCircleIcon, Home, User2, Star, LogOut } from "lucide-react";
+import { useMusicContext } from "@/context/music-provider";
 
 const COLOR_ICON = "#001400";
 
@@ -15,6 +16,8 @@ interface SidebarProps {
 }
 
 const FullSidebar = ({ open, setOpen }: SidebarProps) => {
+  const { userName } = useMusicContext();
+
   return (
     <>
       <header>
@@ -42,7 +45,7 @@ const FullSidebar = ({ open, setOpen }: SidebarProps) => {
             <picture>
               <Image className="user" src={user} alt="user image profile" />
             </picture>
-            <p>Paulo Dias</p>
+            <p>{userName === "" ? "Visitante" : userName}</p>
           </div>
         </section>
         <nav>

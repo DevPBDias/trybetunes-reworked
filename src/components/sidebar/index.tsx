@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FullSidebar from "./FullSidebar";
 import ShortSidebar from "./ShortSidebar";
 import "./styles.scss";
+import { useMusicContext } from "@/context/music-provider";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
