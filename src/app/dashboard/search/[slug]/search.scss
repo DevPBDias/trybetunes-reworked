@@ -23,8 +23,11 @@
     }
 
     .container-albums {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        gap: 1.5rem;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
     }
 }

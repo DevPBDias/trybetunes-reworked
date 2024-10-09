@@ -18,7 +18,7 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
   useEffect(() => {
     const saveAlbum = async () => {
       const data = await getMusics(id);
-      const relatedAlbums = await searchAlbumsAPI("Michael");
+      const relatedAlbums = await searchAlbumsAPI(data[0].artistName);
       const slicedAlbums = relatedAlbums.slice(1, 4);
       setRelated(slicedAlbums);
       const onlySongs = data?.filter(
@@ -29,8 +29,6 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
     };
     saveAlbum();
   }, []);
-
-  console.log(album);
 
   return (
     <main className="main-album-id">

@@ -15,7 +15,7 @@ export const getMusics = async (id: string | undefined) => {
   return requestJson.results;
 };
 
-export const searchAlbumsAPI = async (artist: any) => {
+export const searchAlbumsAPI = async (artist: string) => {
   const artistNameURL = encodeURI(artist).replaceAll('%20', '+');
 
   const getAlbumsAPI = `https://itunes.apple.com/search?entity=album&term=${artistNameURL}&attribute=allArtistTerm`;

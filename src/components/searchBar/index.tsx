@@ -7,12 +7,10 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { searchSchema } from "@/schemas";
-import { useMusicContext } from "@/context/music-provider";
 
 type FormData = z.infer<typeof searchSchema>;
 
 const SearchBar = () => {
-  const { setSearchedName } = useMusicContext();
   const router = useRouter();
   const {
     register,
@@ -24,12 +22,10 @@ const SearchBar = () => {
   });
 
   const handleSearch = (data: FormData) => {
-    setSearchedName(data.search);
-    console.log("clickou");
     if (isSubmitSuccessful) {
+      router.push(`/dashboard/search/${data.search}`);
       reset({ search: "" });
     }
-    router.push("/dashboard/search");
   };
 
   return (

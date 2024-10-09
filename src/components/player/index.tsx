@@ -1,4 +1,3 @@
-import { IArtist } from "@/services/musicData";
 import "./styles.scss";
 
 const PlayerCard = ({ data }: any) => {
