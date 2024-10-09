@@ -10,13 +10,16 @@ import AlbumCard from "@/components/album";
 import Loader from "../../loading";
 import "./styles.scss";
 import { Star, StarOff } from "lucide-react";
+import { useMusicContext } from "@/context/music-provider";
 
 const AlbumID = ({ params }: { params: { id: string } }) => {
+  const { addNewAlbum, addStorage, removeAlbum, removeStorage } =
+    useMusicContext();
   const { id } = params;
   const [album, setAlbum] = useState<any>();
   const [songs, setSongs] = useState<any>();
   const [related, setRelated] = useState<any>();
-  const [favorite, setFavorite] = useState<any>(true);
+  const [starOn, setStarOn] = useState<any>(true);
 
   useEffect(() => {
     const saveAlbum = async () => {
@@ -36,26 +39,23 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
   if (!related && !songs && !album) {
     return <Loader />;
   }
-  const handleAddFavorite = async () => {
-    const formatStorage = {
+
+  const handleAddFavorite = () => {
+    const formatAlbum = {
       albumId: album[0].collectionId,
       albumImg: album[0].artworkUrl100,
       albumName: album[0].collectionName,
       artistName: album[0].artistName,
     };
-    localStorage.setItem("favorite-albums", JSON.stringify([formatStorage]));
-    setFavorite(!favorite);
+    addStorage("favorite-albums", formatAlbum);
+    addNewAlbum(formatAlbum);
+    setStarOn(!starOn);
   };
 
-  const handleRemoveFavorite = async () => {
-    const getFavorites = JSON.parse(
-      localStorage.getItem("favorite-albums") as any
-    );
-    const removeAlbum = getFavorites?.filter(
-      (fav: any) => fav.albumId !== album[0].collectionId
-    );
-    localStorage.setItem("favorite-albums", JSON.stringify(removeAlbum));
-    setFavorite(!favorite);
+  const handleRemoveFavorite = () => {
+    removeStorage("favorite-albums", album[0].collectionId);
+    removeAlbum(album[0].collectionId);
+    setStarOn(!starOn);
   };
 
   return (
@@ -104,7 +104,7 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
                   <p>{getYearReleased(album[0]?.releaseDate)}</p>
                   <p>{album[0]?.primaryGenreName}</p>
                 </div>
-                {favorite ? (
+                {starOn ? (
                   <button
                     type="button"
                     className="star-btn"
