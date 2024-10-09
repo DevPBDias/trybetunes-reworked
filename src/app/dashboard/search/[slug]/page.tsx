@@ -4,8 +4,9 @@ import AlbumCard from "@/components/album";
 import DateAndWheater from "@/components/dateAndWheater";
 import SearchBar from "@/components/searchBar";
 import { useEffect, useState } from "react";
-import "./search.scss";
 import { searchAlbumsAPI } from "@/services/musicData";
+import Loader from "../../loading";
+import "./search.scss";
 
 const SearchPage = ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
@@ -18,6 +19,10 @@ const SearchPage = ({ params }: { params: { slug: string } }) => {
     };
     saveData();
   }, []);
+
+  if (!albums) {
+    return <Loader />;
+  }
 
   return (
     <main className="main-search">

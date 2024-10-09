@@ -9,6 +9,7 @@ import { ArrowUpRight } from "lucide-react";
 import AlbumCard from "@/components/album";
 import { useEffect, useState } from "react";
 import { searchAlbumsAPI } from "@/services/musicData";
+import Loader from "./loading";
 
 const Dashboard = () => {
   const [data, setData] = useState<any>();
@@ -21,6 +22,10 @@ const Dashboard = () => {
     };
     saveData();
   }, []);
+
+  if (!data) {
+    return <Loader />;
+  }
 
   return (
     <main className="container-dashboard">
@@ -53,7 +58,7 @@ const Dashboard = () => {
         <section className="container-musics">
           <h3>Descubra novas músicas todo dia</h3>
           <div className="container-cards">
-            {data ? (
+            {data &&
               data?.map((album: any) => (
                 <AlbumCard
                   key={album.collectionId}
@@ -62,10 +67,7 @@ const Dashboard = () => {
                   albumName={album.collectionName}
                   artistName={album.artistName}
                 />
-              ))
-            ) : (
-              <p>Loading...</p>
-            )}
+              ))}
           </div>
         </section>
       </section>

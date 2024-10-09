@@ -2,12 +2,13 @@
 
 import DateAndWheater from "@/components/dateAndWheater";
 import SearchBar from "@/components/searchBar";
-import "./styles.scss";
 import { useEffect, useState } from "react";
 import { getMusics, searchAlbumsAPI } from "@/services/musicData";
 import { getYearReleased } from "@/utils";
 import PlayerCard from "@/components/player";
 import AlbumCard from "@/components/album";
+import Loader from "../../loading";
+import "./styles.scss";
 
 const AlbumID = ({ params }: { params: { id: string } }) => {
   const { id } = params;
@@ -30,6 +31,10 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
     saveAlbum();
   }, []);
 
+  if (!related && !songs && !album) {
+    return <Loader />;
+  }
+
   return (
     <main className="main-album-id">
       <section className="container-seach-date">
@@ -38,7 +43,7 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
       </section>
       <section className="container-content">
         <section className="first-content-albums">
-          {album ? (
+          {album && (
             <picture>
               <img
                 className="album-image-big"
@@ -46,13 +51,11 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
                 alt="album image"
               />
             </picture>
-          ) : (
-            "Carregando ..."
           )}
           <div className="related-albums">
             <h3>Veja outros álbuns</h3>
             <div className="container-related">
-              {related ? (
+              {related &&
                 related?.map((album: any) => (
                   <AlbumCard
                     key={album.collectionId}
@@ -61,15 +64,12 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
                     albumName={album.collectionName}
                     artistName={album.artistName}
                   />
-                ))
-              ) : (
-                <p>Loading...</p>
-              )}
+                ))}
             </div>
           </div>
         </section>
         <section className="second-content-albums">
-          {album ? (
+          {album && (
             <div className="info-album">
               <h1>{album[0]?.collectionName}</h1>
               <p>{album[0]?.artistName}</p>
@@ -77,8 +77,6 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
               <p>Este álbum possui {album[0]?.trackCount} músicas</p>
               <p>{album[0]?.primaryGenreName}</p>
             </div>
-          ) : (
-            "Carregando ..."
           )}
           <div className="container-musics">
             {songs && <PlayerCard data={songs} />}

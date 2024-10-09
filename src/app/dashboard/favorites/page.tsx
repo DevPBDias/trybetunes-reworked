@@ -5,9 +5,14 @@ import DateAndWheater from "@/components/dateAndWheater";
 import SearchBar from "@/components/searchBar";
 import { useState } from "react";
 import "./favorites.scss";
+import Loader from "../loading";
 
 const FavoritePage = () => {
   const [getAlbums, setGetAlbums] = useState(true);
+
+  // if (!getAlbums) {
+  //  return <Loader />;
+  // }
 
   return (
     <main className="main-favorites">
