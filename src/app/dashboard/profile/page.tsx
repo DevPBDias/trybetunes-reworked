@@ -2,17 +2,38 @@
 
 import DateAndWheater from "@/components/dateAndWheater";
 import SearchBar from "@/components/searchBar";
-import { useState } from "react";
-import "./profile.scss";
 import user from "@/assets/images/user-big.png";
 import Image from "next/image";
 import { Clipboard, Save } from "lucide-react";
+import { profileSchema } from "@/schemas";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import "./profile.scss";
+import { useRouter } from "next/navigation";
+
+type FormData = z.infer<typeof profileSchema>;
 
 const ProfilePage = () => {
-  const [firstName, setFirstName] = useState("Paul");
-  const [lastName, setLastName] = useState("Days");
-  const [email, setEmail] = useState("teste@teste.com");
-  const [adress, setAdress] = useState("Rua 3, Quadra 19, número 22");
+  const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitSuccessful },
+    reset,
+  } = useForm<FormData>({
+    resolver: zodResolver(profileSchema),
+  });
+
+  const handleEdit = (data: FormData) => {
+    console.log(data);
+    if (isSubmitSuccessful) {
+      localStorage.setItem("profile", JSON.stringify(data));
+      reset({ email: "", fisrtName: "", lastName: "", address: "" });
+      router.push("/dashboard");
+    }
+  };
 
   return (
     <main className="main-profile">
@@ -21,7 +42,7 @@ const ProfilePage = () => {
         <DateAndWheater />
       </section>
       <h3>Editar perfil</h3>
-      <form className="container-form">
+      <form className="container-form" onSubmit={handleSubmit(handleEdit)}>
         <picture className="user-container-image">
           <Image
             className="user-image"
@@ -37,38 +58,66 @@ const ProfilePage = () => {
               <label htmlFor="firstName">Nome</label>
               <input
                 type="text"
-                name="firstName"
+                className={`${errors.fisrtName ? "error-border" : ""}`}
+                {...register("fisrtName")}
                 id="firstName"
-                value={firstName}
               />
+              {errors.fisrtName && (
+                <span className="error-msg">{errors.fisrtName.message}</span>
+              )}
             </fieldset>
             <fieldset className="container-field">
               <label htmlFor="lastName">Sobrenome</label>
               <input
                 type="text"
-                name="lastName"
+                className={`${errors.lastName ? "error-border" : ""}`}
+                {...register("lastName")}
                 id="lastName"
-                value={lastName}
               />
+              {errors.lastName && (
+                <span className="error-msg">{errors.lastName.message}</span>
+              )}
             </fieldset>
           </div>
           <div className="container-row-inputs">
             <fieldset className="container-field">
               <label htmlFor="email">E-mail</label>
-              <input type="text" name="email" id="email" value={email} />
+              <input
+                type="text"
+                className={`${errors.email ? "error-border" : ""}`}
+                {...register("email")}
+                id="email"
+              />
+              {errors.email && (
+                <span className="error-msg">{errors.email.message}</span>
+              )}
             </fieldset>
             <fieldset className="container-field">
               <label htmlFor="adress">Endereço</label>
-              <input type="text" name="adress" id="adress" value={adress} />
+              <input
+                type="text"
+                className={`${errors.address ? "error-border" : ""}`}
+                {...register("address")}
+                id="adress"
+              />
+              {errors.address && (
+                <span className="error-msg">{errors.address.message}</span>
+              )}
             </fieldset>
           </div>
         </section>
         <section className="container-btns">
-          <button className="btn-profile" type="button">
+          <button
+            className="btn-profile"
+            type="button"
+            onClick={() =>
+              reset({ email: "", fisrtName: "", lastName: "", address: "" })
+            }
+          >
             <p>Limpar</p>
             <Clipboard size={24} color="#001400" />
           </button>
-          <button className="btn-profile main-btn" type="button">
+          <button className="btn-profile main-btn" type="submit">
             <p>Salvar</p>
             <Save size={24} color="#EBFFEB" />
           </button>
