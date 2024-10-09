@@ -9,12 +9,14 @@ import PlayerCard from "@/components/player";
 import AlbumCard from "@/components/album";
 import Loader from "../../loading";
 import "./styles.scss";
+import { Star, StarOff } from "lucide-react";
 
 const AlbumID = ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const [album, setAlbum] = useState<any>();
   const [songs, setSongs] = useState<any>();
   const [related, setRelated] = useState<any>();
+  const [favorite, setFavorite] = useState<any>(true);
 
   useEffect(() => {
     const saveAlbum = async () => {
@@ -34,6 +36,27 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
   if (!related && !songs && !album) {
     return <Loader />;
   }
+  const handleAddFavorite = async () => {
+    const formatStorage = {
+      albumId: album[0].collectionId,
+      albumImg: album[0].artworkUrl100,
+      albumName: album[0].collectionName,
+      artistName: album[0].artistName,
+    };
+    localStorage.setItem("favorite-albums", JSON.stringify([formatStorage]));
+    setFavorite(!favorite);
+  };
+
+  const handleRemoveFavorite = async () => {
+    const getFavorites = JSON.parse(
+      localStorage.getItem("favorite-albums") as any
+    );
+    const removeAlbum = getFavorites?.filter(
+      (fav: any) => fav.albumId !== album[0].collectionId
+    );
+    localStorage.setItem("favorite-albums", JSON.stringify(removeAlbum));
+    setFavorite(!favorite);
+  };
 
   return (
     <main className="main-album-id">
@@ -72,10 +95,33 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
           {album && (
             <div className="info-album">
               <h1>{album[0]?.collectionName}</h1>
-              <p>{album[0]?.artistName}</p>
-              <p>Lançado em: {getYearReleased(album[0]?.releaseDate)}</p>
-              <p>Este álbum possui {album[0]?.trackCount} músicas</p>
-              <p>{album[0]?.primaryGenreName}</p>
+              <div className="container-tags">
+                <div className="container-info">
+                  <p>Artistas: {album[0]?.artistName}</p>
+                  <p>{album[0]?.trackCount} músicas</p>
+                </div>
+                <div className="container-info">
+                  <p>{getYearReleased(album[0]?.releaseDate)}</p>
+                  <p>{album[0]?.primaryGenreName}</p>
+                </div>
+                {favorite ? (
+                  <button
+                    type="button"
+                    className="star-btn"
+                    onClick={handleAddFavorite}
+                  >
+                    <StarOff size={32} color="#EBFFEB" />
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="star-btn"
+                    onClick={handleRemoveFavorite}
+                  >
+                    <Star size={32} color="#EBFFEB" />
+                  </button>
+                )}
+              </div>
             </div>
           )}
           <div className="container-musics">
