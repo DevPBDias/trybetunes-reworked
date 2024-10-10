@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logo from "@/assets/icons/logoTrybe.png";
 import user from "@/assets/images/user.png";
 import Link from "next/link";
@@ -16,7 +16,17 @@ interface SidebarProps {
 }
 
 const FullSidebar = ({ open, setOpen }: SidebarProps) => {
-  const { userName } = useMusicContext();
+  const { userName, setUserName } = useMusicContext();
+
+  const saveUser = async () => {
+    const storedUser = await JSON.parse(localStorage.getItem("profile") as any);
+    const concatName = storedUser.firstName.concat(" ", storedUser.lastName);
+    setUserName(concatName);
+  };
+
+  useEffect(() => {
+    saveUser();
+  }, []);
 
   return (
     <>

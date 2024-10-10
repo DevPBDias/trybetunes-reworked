@@ -29,14 +29,13 @@ const ProfilePage = () => {
   });
 
   const handleEdit = (data: FormData) => {
-    console.log(data);
+    localStorage.setItem("profile", JSON.stringify(data));
     const joinName = data.firstName.concat(" ", data.lastName);
     setUserName(joinName);
     if (isSubmitSuccessful) {
-      localStorage.setItem("profile", JSON.stringify(data));
       reset({ email: "", firstName: "", lastName: "", address: "" });
-      router.push("/dashboard");
     }
+    router.push("/dashboard");
   };
 
   return (

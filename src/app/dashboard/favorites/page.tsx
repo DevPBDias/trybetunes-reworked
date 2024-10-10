@@ -24,8 +24,6 @@ const FavoritePage = () => {
     return <Loader />;
   }
 
-  console.log(favorites);
-
   return (
     <main className="main-favorites">
       <section className="container-search-date">
