@@ -15,9 +15,7 @@ const FavoritePage = () => {
       const storedfavorites = await JSON.parse(
         localStorage.getItem("favorite-albums") as any
       );
-      console.log(storedfavorites);
       setFavorites(storedfavorites);
-      console.log(favorites);
     };
     showFavorites();
   }, []);

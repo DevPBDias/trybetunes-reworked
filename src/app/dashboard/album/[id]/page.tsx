@@ -19,19 +19,36 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
   const [album, setAlbum] = useState<any>();
   const [songs, setSongs] = useState<any>();
   const [related, setRelated] = useState<any>();
-  const [starOn, setStarOn] = useState<any>(true);
+  const [starOn, setStarOn] = useState<boolean>();
+
+  const checkFavoriteStorage = async (id: any) => {
+    const storedfavorites = await JSON.parse(
+      localStorage.getItem("favorite-albums") as any
+    );
+    const findAlbum = storedfavorites.find(
+      (album: any) => album.albumId === Number(id)
+    );
+    setStarOn(findAlbum);
+  };
+
+  const createRelatedAlbums = async (data: any) => {
+    const relatedAlbums = await searchAlbumsAPI(data[0].artistName);
+    const slicedAlbums = relatedAlbums.slice(1, 4);
+    setRelated(slicedAlbums);
+  };
+
+  const createSongList = async (data: any) => {
+    const onlySongs = data?.filter((elem: any) => elem.wrapperType === "track");
+    setAlbum(data);
+    setSongs(onlySongs);
+  };
 
   useEffect(() => {
     const saveAlbum = async () => {
       const data = await getMusics(id);
-      const relatedAlbums = await searchAlbumsAPI(data[0].artistName);
-      const slicedAlbums = relatedAlbums.slice(1, 4);
-      setRelated(slicedAlbums);
-      const onlySongs = data?.filter(
-        (elem: any) => elem.wrapperType === "track"
-      );
-      setAlbum(data);
-      setSongs(onlySongs);
+      checkFavoriteStorage(id);
+      createRelatedAlbums(data);
+      createSongList(data);
     };
     saveAlbum();
   }, []);
@@ -104,7 +121,7 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
                   <p>{getYearReleased(album[0]?.releaseDate)}</p>
                   <p>{album[0]?.primaryGenreName}</p>
                 </div>
-                {starOn ? (
+                {!starOn ? (
                   <button
                     type="button"
                     className="star-btn"
