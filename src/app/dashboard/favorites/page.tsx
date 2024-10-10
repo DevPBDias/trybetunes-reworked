@@ -1,18 +1,32 @@
 "use client";
 
-import AlbumCard from "@/components/player";
+import AlbumCard from "@/components/album";
 import DateAndWheater from "@/components/dateAndWheater";
 import SearchBar from "@/components/searchBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./favorites.scss";
 import Loader from "../loading";
 
 const FavoritePage = () => {
-  const [getAlbums, setGetAlbums] = useState(true);
+  const [favorites, setFavorites] = useState<any>();
 
-  // if (!getAlbums) {
-  //  return <Loader />;
-  // }
+  useEffect(() => {
+    const showFavorites = async () => {
+      const storedfavorites = await JSON.parse(
+        localStorage.getItem("favorite-albums") as any
+      );
+      console.log(storedfavorites);
+      setFavorites(storedfavorites);
+      console.log(favorites);
+    };
+    showFavorites();
+  }, []);
+
+  if (!favorites) {
+    return <Loader />;
+  }
+
+  console.log(favorites);
 
   return (
     <main className="main-favorites">
@@ -20,26 +34,24 @@ const FavoritePage = () => {
         <SearchBar />
         <DateAndWheater />
       </section>
-      {getAlbums ? (
-        <h3>Aqui estão os albúns que você curtiu!</h3>
+      {favorites ? (
+        <section className="container-content">
+          <h3>Aqui estão os albúns que você curtiu!</h3>
+          <section className="container-albums-favorites">
+            {favorites?.map((album: any) => (
+              <AlbumCard
+                key={album.albumId}
+                albumId={album.albumId}
+                albumImg={album.albumImg}
+                albumName={album.albumName}
+                artistName={album.artistName}
+              />
+            ))}
+          </section>
+        </section>
       ) : (
         <h3>Você não possui nenhum album favorito!!</h3>
       )}
-      <section className="container-albums-favorites">
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-      </section>
     </main>
   );
 };
