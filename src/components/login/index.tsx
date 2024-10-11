@@ -11,11 +11,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/schemas";
 import Title from "../common/Title";
 import Separator from "./Separator";
+import { useUserContext } from "@/context/user-provider";
+import { useState } from "react";
 
 type FormData = z.infer<typeof loginSchema>;
 
 const Login = () => {
   const router = useRouter();
+  const { checkEmailInStorage } = useUserContext();
+  const [showMsg, setShowMsg] = useState<boolean>();
   const {
     register,
     handleSubmit,
@@ -31,9 +35,14 @@ const Login = () => {
     }
   };
 
-  const handleClick = (data: FormData) => {
-    resetForm();
-    router.push("/dashboard");
+  const handleClick = async (data: FormData) => {
+    if (await checkEmailInStorage(data.email)) {
+      localStorage.setItem("loggedUser", JSON.stringify(data));
+      resetForm();
+      router.push("/dashboard");
+    } else {
+      setShowMsg(true);
+    }
   };
 
   return (
@@ -84,6 +93,11 @@ const Login = () => {
             alt="Google icon for login"
           />
         </button>
+        {showMsg && (
+          <span className="email-error-msg">
+            E-mail não cadastrado! Por favor registre-se.
+          </span>
+        )}
       </section>
       <Link className="register-link" href="/sign-up">
         Novo por aqui? Cadastre-se aqui.

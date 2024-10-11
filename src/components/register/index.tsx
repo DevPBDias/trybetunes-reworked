@@ -17,7 +17,7 @@ type FormData = z.infer<typeof registerSchema>;
 
 const Register = () => {
   const router = useRouter();
-  const { addStorage } = useUserContext();
+  const { addStorage, checkEmailInStorage } = useUserContext();
   const [showMsg, setShowMsg] = useState<boolean>();
   const {
     register,
@@ -32,14 +32,6 @@ const Register = () => {
     if (isSubmitSuccessful) {
       reset({ email: "", password: "", firstName: "", lastName: "" });
     }
-  };
-
-  const checkEmailInStorage = async (value: any) => {
-    const storedUsers = await JSON.parse(
-      localStorage.getItem("trybetunes-users") as any
-    );
-    const checkedUser = storedUsers.find((user: any) => user.email === value);
-    return checkedUser;
   };
 
   const handleClick = async (data: FormData) => {

@@ -7,7 +7,7 @@ import user from "@/assets/images/user.png";
 import Link from "next/link";
 import { ArrowLeftCircleIcon, Home, User2, Star, LogOut } from "lucide-react";
 import { useUserContext } from "@/context/user-provider";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const COLOR_ICON = "#001400";
 
@@ -18,6 +18,12 @@ interface SidebarProps {
 
 const FullSidebar = ({ open, setOpen }: SidebarProps) => {
   const { userName, setUserName } = useUserContext();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedUser");
+    router.push("/");
+  };
 
   const saveUser = async () => {
     const userLogin = await JSON.parse(
@@ -86,10 +92,10 @@ const FullSidebar = ({ open, setOpen }: SidebarProps) => {
           </Link>
         </nav>
       </header>
-      <Link className="logout-btn" href="/">
+      <button className="logout-btn" onClick={handleLogout}>
         <LogOut size={28} color={COLOR_ICON} />
         <p>Sair</p>
-      </Link>
+      </button>
     </>
   );
 };

@@ -2,19 +2,25 @@
 
 import Image from "next/image";
 import React from "react";
-import logo from "@/assets/icons/logoTrybe.png";
 import user from "@/assets/images/user.png";
 import Link from "next/link";
 import { ArrowLeftCircleIcon, Home, User2, Star, LogOut } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const COLOR_ICON = "#001400";
-
 interface SidebarProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ShortSidebar = ({ open, setOpen }: SidebarProps) => {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedUser");
+    router.push("/");
+  };
+
   return (
     <>
       <section
@@ -46,9 +52,9 @@ const ShortSidebar = ({ open, setOpen }: SidebarProps) => {
           <Star size={28} color={COLOR_ICON} />
         </Link>
       </nav>
-      <Link className="logout-btn" href="/">
+      <button className="logout-btn" onClick={handleLogout}>
         <LogOut size={28} color={COLOR_ICON} />
-      </Link>
+      </button>
     </>
   );
 };

@@ -7,6 +7,7 @@ type IUser = {
   lastName: string;
   email: string;
   password: string;
+  address?: string;
 };
 interface UserProps {
   userName: string;
@@ -16,6 +17,7 @@ interface UserProps {
   addNewUser: (newUser: IUser) => void;
   removeUser: (email: string) => void;
   addStorage: (key: string, value: IUser) => void;
+  checkEmailInStorage: (value: string) => Promise<boolean>;
   removeStorage: (key: string, value: string) => void;
 }
 
@@ -60,6 +62,16 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.setItem(key, JSON.stringify(storage));
   };
 
+  const checkEmailInStorage = async (value: string) => {
+    const storedUsers = await JSON.parse(
+      localStorage.getItem("trybetunes-users") as any
+    );
+    const checkedUser: boolean = storedUsers.find(
+      (user: any) => user.email === value
+    );
+    return checkedUser;
+  };
+
   const removeStorage = (key: string, value: string) => {
     const checkStorage = JSON.parse(localStorage.getItem(key) as any);
     const newStorage = checkStorage?.filter(
@@ -78,6 +90,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         addNewUser,
         removeUser,
         addStorage,
+        checkEmailInStorage,
         removeStorage,
       }}
     >
