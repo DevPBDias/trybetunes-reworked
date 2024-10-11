@@ -6,7 +6,7 @@ import logo from "@/assets/icons/logoTrybe.png";
 import user from "@/assets/images/user.png";
 import Link from "next/link";
 import { ArrowLeftCircleIcon, Home, User2, Star, LogOut } from "lucide-react";
-import { useMusicContext } from "@/context/music-provider";
+import { useUserContext } from "@/context/user-provider";
 
 const COLOR_ICON = "#001400";
 
@@ -16,7 +16,7 @@ interface SidebarProps {
 }
 
 const FullSidebar = ({ open, setOpen }: SidebarProps) => {
-  const { userName, setUserName } = useMusicContext();
+  const { userName, setUserName } = useUserContext();
 
   const saveUser = async () => {
     const storedUser = await JSON.parse(localStorage.getItem("profile") as any);

@@ -11,13 +11,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import "./profile.scss";
 import { useRouter } from "next/navigation";
-import { useMusicContext } from "@/context/music-provider";
+import { useUserContext } from "@/context/user-provider";
 
 type FormData = z.infer<typeof profileSchema>;
 
 const ProfilePage = () => {
   const router = useRouter();
-  const { setUserName } = useMusicContext();
+  const { setUserName } = useUserContext();
 
   const {
     register,

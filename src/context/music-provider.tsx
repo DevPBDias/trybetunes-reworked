@@ -9,8 +9,6 @@ type IAlbum = {
   artistName: string;
 };
 interface MusicProps {
-  userName: string;
-  setUserName: React.Dispatch<React.SetStateAction<string>>;
   favorites: IAlbum[];
   setFavorites: React.Dispatch<React.SetStateAction<IAlbum[]>>;
   addNewAlbum: (newAlbum: IAlbum) => void;
@@ -22,7 +20,6 @@ interface MusicProps {
 export const MusicContext = createContext<MusicProps | undefined>(undefined);
 
 export const MusicProvider = ({ children }: { children: React.ReactNode }) => {
-  const [userName, setUserName] = useState("");
   const [favorites, setFavorites] = useState<IAlbum[]>([]);
 
   const addNewAlbum = (newAlbum: IAlbum) => {
@@ -71,10 +68,8 @@ export const MusicProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <MusicContext.Provider
       value={{
-        userName,
         favorites,
         setFavorites,
-        setUserName,
         addNewAlbum,
         removeAlbum,
         addStorage,
