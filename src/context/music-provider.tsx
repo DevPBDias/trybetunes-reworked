@@ -1,5 +1,6 @@
 "use client";
 
+import { IArtist } from "@/services/musicData";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 type IAlbum = {
@@ -9,6 +10,8 @@ type IAlbum = {
   artistName: string;
 };
 interface MusicProps {
+  searchedAlbums: IArtist[];
+  setSearchedAlbums: React.Dispatch<React.SetStateAction<IArtist[]>>;
   favorites: IAlbum[];
   setFavorites: React.Dispatch<React.SetStateAction<IAlbum[]>>;
   addNewAlbum: (newAlbum: IAlbum) => void;
@@ -21,6 +24,7 @@ export const MusicContext = createContext<MusicProps | undefined>(undefined);
 
 export const MusicProvider = ({ children }: { children: React.ReactNode }) => {
   const [favorites, setFavorites] = useState<IAlbum[]>([]);
+  const [searchedAlbums, setSearchedAlbums] = useState<any>();
 
   const addNewAlbum = (newAlbum: IAlbum) => {
     if (favorites.length === 0) {
@@ -70,6 +74,8 @@ export const MusicProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         favorites,
         setFavorites,
+        searchedAlbums,
+        setSearchedAlbums,
         addNewAlbum,
         removeAlbum,
         addStorage,

@@ -3,24 +3,25 @@
 import AlbumCard from "@/components/album";
 import DateAndWheater from "@/components/dateAndWheater";
 import SearchBar from "@/components/searchBar";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { searchAlbumsAPI } from "@/services/musicData";
 import Loader from "../../loading";
 import "./search.scss";
+import { useMusicContext } from "@/context/music-provider";
 
 const SearchPage = ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
-  const [albums, setAlbums] = useState<any>();
+  const { searchedAlbums, setSearchedAlbums } = useMusicContext();
 
   useEffect(() => {
     const saveData = async () => {
       const data = await searchAlbumsAPI(slug);
-      setAlbums(data);
+      setSearchedAlbums(data);
     };
     saveData();
   }, []);
 
-  if (!albums) {
+  if (!searchedAlbums) {
     return <Loader />;
   }
 
@@ -31,9 +32,9 @@ const SearchPage = ({ params }: { params: { slug: string } }) => {
         <DateAndWheater />
       </section>
       <h3>Resultado da pesquisa: {slug}</h3>
-      {albums && (
+      {searchedAlbums && (
         <section className="container-albums">
-          {albums?.map((album: any) => (
+          {searchedAlbums?.map((album: any) => (
             <AlbumCard
               key={album.collectionId}
               albumId={album.collectionId}

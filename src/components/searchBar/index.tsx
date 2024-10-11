@@ -23,9 +23,9 @@ const SearchBar = () => {
 
   const handleSearch = (data: FormData) => {
     if (isSubmitSuccessful) {
-      router.push(`/dashboard/search/${data.search}`);
       reset({ search: "" });
     }
+    router.push(`/dashboard/search/${data.search}`);
   };
 
   return (

@@ -3,12 +3,13 @@
 import AlbumCard from "@/components/album";
 import DateAndWheater from "@/components/dateAndWheater";
 import SearchBar from "@/components/searchBar";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./favorites.scss";
 import Loader from "../loading";
+import { useMusicContext } from "@/context/music-provider";
 
 const FavoritePage = () => {
-  const [favorites, setFavorites] = useState<any>();
+  const { favorites, setFavorites } = useMusicContext();
 
   useEffect(() => {
     const showFavorites = async () => {
