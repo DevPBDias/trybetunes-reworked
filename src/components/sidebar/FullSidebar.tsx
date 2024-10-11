@@ -7,6 +7,7 @@ import user from "@/assets/images/user.png";
 import Link from "next/link";
 import { ArrowLeftCircleIcon, Home, User2, Star, LogOut } from "lucide-react";
 import { useUserContext } from "@/context/user-provider";
+import { redirect } from "next/navigation";
 
 const COLOR_ICON = "#001400";
 
@@ -19,9 +20,21 @@ const FullSidebar = ({ open, setOpen }: SidebarProps) => {
   const { userName, setUserName } = useUserContext();
 
   const saveUser = async () => {
-    const storedUser = await JSON.parse(localStorage.getItem("profile") as any);
-    const concatName = storedUser.firstName.concat(" ", storedUser.lastName);
-    setUserName(concatName);
+    const userLogin = await JSON.parse(
+      localStorage.getItem("loggedUser") as any
+    );
+    const storedUser = await JSON.parse(
+      localStorage.getItem("trybetunes-users") as any
+    );
+    const checkedUser = storedUser.find(
+      (user: any) => user.email === userLogin.email
+    );
+    if (checkedUser) {
+      const concatName = storedUser.firstName.concat(" ", storedUser.lastName);
+      setUserName(concatName);
+    } else {
+      redirect("/");
+    }
   };
 
   useEffect(() => {

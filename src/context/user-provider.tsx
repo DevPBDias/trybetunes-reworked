@@ -3,8 +3,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 type IUser = {
-  id: number;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
 };

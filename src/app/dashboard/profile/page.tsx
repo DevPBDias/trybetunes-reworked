@@ -29,7 +29,7 @@ const ProfilePage = () => {
   });
 
   const handleEdit = (data: FormData) => {
-    localStorage.setItem("profile", JSON.stringify(data));
+    localStorage.setItem("trybetunes-users", JSON.stringify(data));
     const joinName = data.firstName.concat(" ", data.lastName);
     setUserName(joinName);
     if (isSubmitSuccessful) {

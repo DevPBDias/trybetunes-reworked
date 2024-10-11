@@ -10,11 +10,15 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/schemas";
+import { useUserContext } from "@/context/user-provider";
+import { useState } from "react";
 
 type FormData = z.infer<typeof registerSchema>;
 
 const Register = () => {
   const router = useRouter();
+  const { addStorage } = useUserContext();
+  const [showMsg, setShowMsg] = useState<boolean>();
   const {
     register,
     handleSubmit,
@@ -30,9 +34,22 @@ const Register = () => {
     }
   };
 
-  const handleClick = (data: FormData) => {
-    resetForm();
-    router.push("/");
+  const checkEmailInStorage = async (value: any) => {
+    const storedUsers = await JSON.parse(
+      localStorage.getItem("trybetunes-users") as any
+    );
+    const checkedUser = storedUsers.find((user: any) => user.email === value);
+    return checkedUser;
+  };
+
+  const handleClick = async (data: FormData) => {
+    if (await checkEmailInStorage(data.email)) {
+      setShowMsg(true);
+    } else {
+      addStorage("trybetunes-users", data);
+      resetForm();
+      router.push("/");
+    }
   };
 
   return (
@@ -105,6 +122,9 @@ const Register = () => {
             alt="Google icon for register"
           />
         </button>
+        {showMsg && (
+          <span className="email-error-msg">E-mail já foi usado!</span>
+        )}
       </section>
       <Link className="redirect-link" href="/">
         Já tem cadastro? Efetue o login por aqui.
