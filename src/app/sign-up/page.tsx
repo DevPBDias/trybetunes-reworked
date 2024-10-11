@@ -12,7 +12,6 @@ export default function SignUp() {
         fill
         quality={100}
         priority
-        placeholder="blur"
       />
       <Register />
     </main>

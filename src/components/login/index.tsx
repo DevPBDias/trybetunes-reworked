@@ -8,11 +8,11 @@ import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { inputSchema } from "@/schemas";
+import { loginSchema } from "@/schemas";
 import Title from "../common/Title";
 import Separator from "./Separator";
 
-type FormData = z.infer<typeof inputSchema>;
+type FormData = z.infer<typeof loginSchema>;
 
 const Login = () => {
   const router = useRouter();
@@ -22,7 +22,7 @@ const Login = () => {
     formState: { errors, isSubmitSuccessful },
     reset,
   } = useForm<FormData>({
-    resolver: zodResolver(inputSchema),
+    resolver: zodResolver(loginSchema),
   });
 
   const resetForm = () => {
@@ -76,7 +76,7 @@ const Login = () => {
           Entrar
         </button>
         <Separator />
-        <button className="google-btn" type="submit">
+        <button className="google-btn" type="button">
           <p>Entrar com </p>
           <Image
             className="google-icon"
