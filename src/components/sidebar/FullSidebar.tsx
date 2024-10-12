@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import logo from "@/assets/icons/logoTrybe.png";
 import user from "@/assets/images/user.png";
 import Link from "next/link";

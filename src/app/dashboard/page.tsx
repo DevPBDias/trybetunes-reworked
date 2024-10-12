@@ -4,22 +4,24 @@ import DateAndWheater from "@/components/dateAndWheater";
 import SearchBar from "@/components/searchBar";
 import Image from "next/image";
 import heroImg from "@/assets/images/main-hero.png";
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import AlbumCard from "@/components/album";
 import { useEffect, useState } from "react";
 import { searchAlbumsAPI } from "@/services/musicData";
 import Loader from "./loading";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
+  const router = useRouter();
   const [data, setData] = useState<any>();
 
+  const saveData = async () => {
+    const data = await searchAlbumsAPI("Michael");
+    const slicedAlbums = data.slice(0, 6);
+    setData(slicedAlbums);
+  };
+
   useEffect(() => {
-    const saveData = async () => {
-      const data = await searchAlbumsAPI("Michael");
-      const slicedAlbums = data.slice(0, 6);
-      setData(slicedAlbums);
-    };
     saveData();
   }, []);
 
@@ -50,10 +52,13 @@ const Dashboard = () => {
             <br />
             mundo da música
           </h1>
-          <Link href={`/dashboard/album/${data?.collectionId}`}>
+          <button
+            type="button"
+            onClick={() => router.push("/dashboard/search/Michael")}
+          >
             <p>Descubra</p>
             <ArrowUpRight size={24} color="#EBFFEB" />
-          </Link>
+          </button>
         </section>
         <section className="container-musics">
           <h3>Descubra novas músicas todo dia</h3>
