@@ -17,8 +17,12 @@ interface UserProps {
   addNewUser: (newUser: IUser) => void;
   removeUser: (email: string) => void;
   addStorage: (key: string, value: IUser) => void;
-  checkEmailInStorage: (value: string) => Promise<boolean>;
   removeStorage: (key: string, value: string) => void;
+  checkEmailInStorage: (value: string) => Promise<boolean>;
+  loginValidation: (value: { email: string; password: string }) => Promise<{
+    checkedPwd: boolean;
+    checkedUser: any;
+  }>;
 }
 
 export const UserContext = createContext<UserProps | undefined>(undefined);
@@ -72,6 +76,23 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     return checkedUser;
   };
 
+  const loginValidation = async (value: {
+    email: string;
+    password: string;
+  }) => {
+    const storedUsers = await JSON.parse(
+      localStorage.getItem("trybetunes-users") as any
+    );
+
+    const checkedUser = storedUsers.filter(
+      (user: any) => user.email === value.email
+    );
+
+    const checkedPwd: boolean = checkedUser[0].password === value.password;
+
+    return { checkedPwd, checkedUser };
+  };
+
   const removeStorage = (key: string, value: string) => {
     const checkStorage = JSON.parse(localStorage.getItem(key) as any);
     const newStorage = checkStorage?.filter(
@@ -92,6 +113,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         addStorage,
         checkEmailInStorage,
         removeStorage,
+        loginValidation,
       }}
     >
       {children}

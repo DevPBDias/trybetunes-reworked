@@ -29,14 +29,11 @@ const FullSidebar = ({ open, setOpen }: SidebarProps) => {
     const userLogin = await JSON.parse(
       localStorage.getItem("loggedUser") as any
     );
-    const storedUser = await JSON.parse(
-      localStorage.getItem("trybetunes-users") as any
-    );
-    const checkedUser = storedUser.find(
-      (user: any) => user.email === userLogin.email
-    );
-    if (checkedUser) {
-      const concatName = storedUser.firstName.concat(" ", storedUser.lastName);
+    if (userLogin) {
+      const concatName = userLogin[0].firstName.concat(
+        " ",
+        userLogin[0].lastName
+      );
       setUserName(concatName);
     } else {
       redirect("/");

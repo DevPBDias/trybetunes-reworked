@@ -18,7 +18,7 @@ type FormData = z.infer<typeof loginSchema>;
 
 const Login = () => {
   const router = useRouter();
-  const { checkEmailInStorage } = useUserContext();
+  const { loginValidation } = useUserContext();
   const [showMsg, setShowMsg] = useState<boolean>();
   const {
     register,
@@ -36,8 +36,12 @@ const Login = () => {
   };
 
   const handleClick = async (data: FormData) => {
-    if (await checkEmailInStorage(data.email)) {
-      localStorage.setItem("loggedUser", JSON.stringify(data));
+    const checkedData = await loginValidation(data);
+    if (checkedData.checkedPwd) {
+      localStorage.setItem(
+        "loggedUser",
+        JSON.stringify(checkedData.checkedUser)
+      );
       resetForm();
       router.push("/dashboard");
     } else {
