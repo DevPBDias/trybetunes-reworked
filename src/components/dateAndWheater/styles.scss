@@ -45,17 +45,12 @@
 
 @media (768px <= width < 1350px) {
     .container-info {
-        flex-flow: row-reverse nowrap;
-        justify-content: space-between;
-        align-items: center;
         padding: .5rem;
-        width: 100%;
     
         .container-date, .container-wheater {
             p {
-                font-size: 0.7rem;
+                font-size: .9rem;
             }
-    
         }
     }
 }

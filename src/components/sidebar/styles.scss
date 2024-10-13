@@ -265,7 +265,7 @@ aside {
     }
 }
 
-@media (768px <= width < 1350px) {
+@media (768px <= width <= 1024px) {
     aside {
         display: none;
       }
