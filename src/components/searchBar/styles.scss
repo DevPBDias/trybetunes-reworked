@@ -62,3 +62,64 @@
         background-color: transparent;
     }
 }
+
+@media (240px < width < 768px) {
+    .form-searchbar {
+        width: 100%;
+        height: 2.2rem;
+        border-radius: .5rem;
+    
+        fieldset {
+            input {
+                &::placeholder {
+                    padding-inline: .25rem;
+                }
+            }
+    
+            .error-border {
+                border: 1px solid #D30707;
+                &:focus {
+                    outline: 2px solid #FF2200;
+                    outline-offset: -2px;
+                }
+            }
+    
+            .error-msg {
+                font-size: 0.75rem;
+                font-weight: 400;
+                line-height: normal;
+                text-align: left;
+                padding: 0.25rem;
+                width: 100%;
+            }
+        }
+    
+        button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1;
+            height: 100%;
+            padding-inline: .5rem;
+            border-radius: .5rem;
+            cursor: pointer;
+            background-color: transparent;
+        }
+    }
+}
+
+@media (768px <= width < 1350px) {
+    .container-info {
+        flex-flow: row-reverse nowrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    
+        .container-date, .container-wheater {
+            p {
+                font-size: 0.7rem;
+            }
+    
+        }
+    }
+}

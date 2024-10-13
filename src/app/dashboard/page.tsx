@@ -32,12 +32,12 @@ const Dashboard = () => {
   return (
     <main className="container-dashboard">
       <Image
+        className="hero-dashboard"
         src={heroImg}
         alt="main hero image"
         style={{ objectFit: "cover" }}
         fill
         quality={100}
-        placeholder="blur"
       />
       <section className="container-content">
         <section className="container-seach-date">

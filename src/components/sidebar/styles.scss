@@ -259,3 +259,14 @@ aside {
     }
 }
 
+@media (240px < width < 768px) {
+    aside {
+      display: none;
+    }
+}
+
+@media (768px <= width < 1350px) {
+    aside {
+        display: none;
+      }
+}
