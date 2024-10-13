@@ -155,3 +155,88 @@
         }
     }
 }
+
+@media (240px < width < 768px) {
+    .register-form {
+        padding-inline: 1.2rem;
+        width: 100%;
+    
+        .container-title {
+            .register-title{
+                font-size: 1.5rem;
+    
+            }
+    
+            .register-subtitle{
+                font-size: .8rem;
+            }
+        }
+    
+        .container-inputs {
+            gap: 1.5rem;
+    
+            .container-field {
+                .label {
+                    font-size: 1rem;
+                }
+    
+                a {
+                    font-size: 0.7rem;
+                }
+    
+                input {
+                    height: 2rem;
+                    padding-inline: .5rem;
+                }
+    
+                .error-msg {
+                    font-size: 0.7rem;
+                }
+            }
+        }
+    
+        .container-btns {
+            .main-btn {
+                height: 2rem;
+                font-size: .9rem;
+            }
+    
+            .container-separator {
+                p {
+                    font-size: 0.6rem;
+                }
+            }
+    
+            .google-btn {
+                height: 2rem;
+                border-radius: .5rem;
+
+                .google-icon {
+                    width: 20px;
+                    height: 20px;
+                }
+
+                p {
+                    font-size: .9rem;
+                    font-weight: 700;
+                    line-height: normal;
+                }
+            }
+        }
+    
+        .email-error-msg {
+            font-size: .7rem;
+        }
+    
+        .register-link {
+            font-size: 0.75rem;
+        }
+    }
+}
+
+@media (768px <= width < 1350px) {
+    .register-form {
+        padding-inline: 1.5rem;
+        width: 60%;
+    }
+}
