@@ -138,3 +138,124 @@
         }
     }
 }
+
+@media (240px < width < 768px) {
+    .main-profile{
+        padding: 1.5rem;
+        gap: 2.5rem;
+        height: 100vh;
+        
+        .container-search-date {
+            flex-flow: column-reverse nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+    
+        .container-form {
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+    
+            .user-container-image {
+                width: 90px;
+                height: 90px;
+            }
+    
+            .container-inputs {
+                flex-flow: column nowrap;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 1.2rem;
+    
+                .container-row-inputs {
+                    width: 100%;
+                    flex-flow: column nowrap;
+                    gap: 1.2rem;
+                    
+                        .container-field {
+                        flex-flow: column nowrap;
+                        
+                        .label {
+                            font-size: 1rem;
+                        }
+                        
+                        input {
+                            height: 2.2rem;
+                        }
+                    }
+                }
+            }
+    
+            .container-btns {
+                width: 100%;
+                flex-flow: column-reverse nowrap;
+                gap: 1.5rem;
+    
+                .btn-profile {
+                    width: 100%;
+    
+                    p {
+                        font-size: .9rem;
+                    }
+                }
+    
+                .main-btn {
+                    p {
+                        font-size: .9rem;
+                    }
+                }
+            }
+        }
+    }
+  
+  }
+
+  @media (768px <= width <= 1200px) {
+    .main-profile{
+        padding: 2rem;
+        gap: 3rem;
+        height: 100vh;
+        
+        .container-search-date {
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+    
+        .container-form {
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+    
+            .user-container-image {
+                width: 120px;
+                height: 120px;
+            }
+    
+            .container-inputs {
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                align-items: flex-start;
+    
+                .container-row-inputs {
+                    width: 100%;
+                    flex-flow: column nowrap;
+                    gap: 2rem;
+                }
+            }
+    
+            .container-btns {
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                margin-top: 3rem;
+    
+                .btn-profile {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
