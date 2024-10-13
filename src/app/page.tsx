@@ -11,7 +11,7 @@ export default function Home() {
         style={{ objectFit: "cover" }}
         fill
         quality={100}
-        placeholder="blur"
+        priority
       />
       <Login />
     </main>

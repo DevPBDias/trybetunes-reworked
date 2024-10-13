@@ -4,7 +4,9 @@ $terciary-color: #00A300;
 $glass-bg-color: #30372F;
 $hover-color: #cbffcb;
 
-*, body {
+html, body { overflow: hidden;}
+
+*, html, body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -15,8 +17,9 @@ $hover-color: #cbffcb;
 
 .container-hero {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  display: flex;
 }
 
 .main-loading {
