@@ -30,10 +30,7 @@ const FullSidebar = ({ open, setOpen }: SidebarProps) => {
       localStorage.getItem("loggedUser") as any
     );
     if (userLogin) {
-      const concatName = userLogin[0].firstName.concat(
-        " ",
-        userLogin[0].lastName
-      );
+      const concatName = userLogin.firstName.concat(" ", userLogin.lastName);
       setUserName(concatName);
     } else {
       redirect("/");

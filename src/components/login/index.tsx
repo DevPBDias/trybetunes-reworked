@@ -40,7 +40,7 @@ const Login = () => {
     if (checkedData.checkedPwd) {
       localStorage.setItem(
         "loggedUser",
-        JSON.stringify(checkedData.checkedUser)
+        JSON.stringify(checkedData.checkedUser[0])
       );
       resetForm();
       router.push("/dashboard");
