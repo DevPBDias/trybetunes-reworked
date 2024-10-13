@@ -4,7 +4,10 @@ $terciary-color: #00A300;
 $glass-bg-color: #30372F;
 $hover-color: #cbffcb;
 
-html, body { overflow: hidden;}
+body {
+  display: flex;
+  width: 100%;
+}
 
 *, html, body {
   box-sizing: border-box;
