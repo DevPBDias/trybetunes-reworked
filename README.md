@@ -53,7 +53,7 @@
 </br>
   <div align="center">
 
-![20241014_115223](https://github.com/user-attachments/assets/fb7fabb1-b899-4870-b15b-d48e6bdf3c7c)
+![image](https://github.com/user-attachments/assets/49c67421-86f0-4b43-b74d-015e28f4008c)
     
   </div>
 </details>
