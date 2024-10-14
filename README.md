@@ -1,4 +1,4 @@
-# Teste Dev Junior da Legaplan - Lista de tarefas
+# Trybetunes Reworked
 
 ## 📌 Sobre o projeto:
 
