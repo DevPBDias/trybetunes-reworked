@@ -115,14 +115,13 @@
   @media (240px <= width < 900px) {
     .container-card {
         width: 100%;
-        min-height: 140px;
-
+        height: 170px;
   }
 }
 
   @media (900px <= width < 1200px) {
     .container-card {
         width: 100%;
-        min-height: 200px;
+        height: 200px;
   }
   }
