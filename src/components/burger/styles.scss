@@ -1,0 +1,122 @@
+.burger-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #EBFFEB;
+    width: 100%;
+    padding: 1rem;
+    
+    .simple-nav {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        
+        picture {
+            width: 4rem;
+
+            .logo {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .container-turnon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+        }
+    }
+
+    .container-header-mobile {
+        position: absolute;
+        z-index: 9;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        background-color: #EBFFEB;
+        width: 100%;
+        padding: 2rem;
+        gap: 2rem;
+
+        .container-turnoff {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+
+            picture {
+                width: 4rem;
+    
+                .logo {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: transparent; 
+            }
+        }
+
+        .container-user {
+            display: flex;
+            flex-flow: row-reverse nowrap;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            gap: 1rem;
+    
+            .user {
+                    width: 3rem;
+                    height: 3rem;
+                    object-fit: cover;
+            }
+
+            p {
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: normal;
+                color: #001400;
+            }
+        }
+
+        .container-links {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            
+            a {
+                display: flex;
+                flex-flow: row-reverse nowrap;
+                justify-content: flex-start;
+                align-items: center;
+                width: 100%;
+                gap: .5rem;
+
+                p {
+                    font-size: 1rem;
+                    font-weight: 400;
+                    line-height: normal;
+                    color: #001400;
+                }
+            }
+        }
+    }
+
+}

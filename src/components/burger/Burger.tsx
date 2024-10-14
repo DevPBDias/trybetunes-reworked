@@ -7,12 +7,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import logo from "@/assets/icons/logoTrybe.png";
 import user from "@/assets/images/user.png";
+import "./styles.scss";
 
 const COLOR_ICON = "#001400";
 
 const Burger = () => {
   const { userName, setUserName } = useUserContext();
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(true);
 
   const saveUser = async () => {
     const userLogin = await JSON.parse(
@@ -51,11 +52,6 @@ const Burger = () => {
       ) : (
         <section className="container-header-mobile">
           <div className="container-turnoff">
-            <button type="button" onClick={() => setOpen(!open)}>
-              <X size={28} color={COLOR_ICON} />
-            </button>
-          </div>
-          <div className="upper-section">
             <picture>
               <Image
                 className="logo"
@@ -64,24 +60,25 @@ const Burger = () => {
                 priority
               />
             </picture>
+            <button type="button" onClick={() => setOpen(!open)}>
+              <X size={28} color={COLOR_ICON} />
+            </button>
           </div>
-          <div className="lower-section">
-            <picture>
-              <Image className="user" src={user} alt="user image profile" />
-            </picture>
+          <div className="container-user">
+            <Image className="user" src={user} alt="user image profile" />
             <p>{userName === "" ? "Visitante" : userName}</p>
           </div>
-          <nav>
+          <nav className="container-links">
             <Link href="/dashboard">
-              <Home size={28} color={COLOR_ICON} />
+              <Home size={24} color={COLOR_ICON} />
               <p>Home</p>
             </Link>
             <Link href="/dashboard/profile">
-              <User2 size={28} color={COLOR_ICON} />
+              <User2 size={24} color={COLOR_ICON} />
               <p>Perfil</p>
             </Link>
             <Link href="/dashboard/favorites">
-              <Star size={28} color={COLOR_ICON} />
+              <Star size={24} color={COLOR_ICON} />
               <p>Favoritos</p>
             </Link>
           </nav>
