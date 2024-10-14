@@ -27,7 +27,7 @@ const SearchPage = ({ params }: { params: { slug: string } }) => {
 
   return (
     <main className="main-search">
-      <section className="container-seach-date">
+      <section className="container-search-date">
         <SearchBar />
         <DateAndWheater />
       </section>

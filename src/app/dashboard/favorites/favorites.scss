@@ -13,7 +13,7 @@
         align-items: flex-start;
         width: 100%;
     }
-
+    
     h3 {
         font-size: 1.5rem;
         font-weight: 700;
@@ -21,8 +21,8 @@
         color: #EBFFEB;
         width: 100%;
     }
-
-
+    
+    
     .container-content {
         display: flex;
         flex-flow: column nowrap;
@@ -30,12 +30,80 @@
         width: 100%;
         
         .container-albums-favorites {
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
             width: 100%;
+        }
+    }
+}
+
+@media (240px < width < 768px) {
+    .main-favorites{
+        padding: 1.5rem;
+        min-height: 100vh;
+        
+        .container-search-date {
+            flex-flow: column-reverse nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+    
+        h3 {
+            font-size: 1.2rem;
+        }
+    
+        .container-content {
+            
+            .container-albums-favorites {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (768px <= width < 1024px) {
+    .main-favorites{
+        padding: 1.5rem;
+        min-height: 100vh;
+
+        .container-search-date {
+            flex-flow: row nowrap;
+        }
+    
+        .container-content {
+            
+            .container-albums-favorites {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 1rem;
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (1024px <= width < 1200px) {
+    .main-favorites{
+        padding: 1.5rem;
+        min-height: 100vh;
+
+        .container-search-date {
+            flex-flow: row nowrap;
+        }
+    
+        .container-content {
+            
+            .container-albums-favorites {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 1rem;
+                width: 100%;
+            }
         }
     }
 }

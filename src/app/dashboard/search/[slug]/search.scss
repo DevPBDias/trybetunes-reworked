@@ -6,7 +6,7 @@
     padding: 3rem;
     gap: 2.5rem;
     
-    .container-seach-date {
+    .container-search-date {
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
@@ -23,11 +23,70 @@
     }
 
     .container-albums {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 2rem;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1rem;
         width: 100%;
+    }
+}
+
+@media (240px < width < 768px) {
+    .main-search{
+        padding: 1.5rem;
+        min-height: 100vh;
+        
+        .container-search-date {
+            flex-flow: column-reverse nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+    
+        h3 {
+            font-size: 1.2rem;
+        }
+            
+        .container-albums {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                width: 100%;
+        }
+    }
+}
+
+@media (768px <= width < 1024px) {
+    .main-search{
+        padding: 1.5rem;
+        min-height: 100vh;
+
+        .container-search-date {
+            flex-flow: row nowrap;
+        }
+            
+        .container-albums {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 1rem;
+                width: 100%;
+        }
+    }
+}
+
+@media (1024px <= width < 1200px) {
+    .main-search{
+        padding: 1.5rem;
+        min-height: 100vh;
+
+        .container-search-date {
+            flex-flow: row nowrap;
+        }
+            
+        .container-albums {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 1rem;
+                width: 100%;
+        }
     }
 }
