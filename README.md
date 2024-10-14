@@ -39,26 +39,15 @@
 <details>
   <summary>Deploy da aplicação</summary>
   
-> <a href="https://legaplan-teste-tecnico.vercel.app" target="_blank">https://legaplan-teste-tecnico.vercel.app</a>
+> <a href="https://trybetunes-reworked.vercel.app" target="_blank">https://trybetunes-reworked.vercel.app</a>
 
 </details>
 <details>
   <summary>Figma do projeto</summary>
 
-> <a href="https://trybetunes-reworked.vercel.app" target="_blank">https://trybetunes-reworked.vercel.app</a>
+> <a href="https://www.figma.com/design/pHZC96tiC6PZhGKX8hEJ8s/TrybeTunes-Reworked?node-id=4-2&t=uaNWPsPhrPDDCDLS-1" target="_blank">https://www.figma.com/design/pHZC96tiC6PZhGKX8hEJ8s/TrybeTunes-Reworked?node-id=4-2&t=uaNWPsPhrPDDCDLS-1</a>
 
 </details>
-
-<details>
-  <summary>Confira a versão mobile</summary>
-</br>
-    <div align="left">
-      
-![20241014_115223](https://github.com/user-attachments/assets/fb7fabb1-b899-4870-b15b-d48e6bdf3c7c)
-
-  </div>
-</details>
-
 <details>
   <summary>Como está o localStorage?</summary>
 </br>
