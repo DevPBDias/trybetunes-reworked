@@ -1,7 +1,3 @@
-.display-side {
-    display: none;
-}
-
 aside {
     background-color: #EBFFEB;
     position: sticky;
@@ -257,16 +253,4 @@ aside {
             }
         }
     }
-}
-
-@media (240px < width < 768px) {
-    aside {
-      display: none;
-    }
-}
-
-@media (768px <= width <= 1200px) {
-    aside {
-        display: none;
-      }
 }

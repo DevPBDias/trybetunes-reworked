@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import FullSidebar from "./FullSidebar";
 import ShortSidebar from "./ShortSidebar";
 import "./styles.scss";

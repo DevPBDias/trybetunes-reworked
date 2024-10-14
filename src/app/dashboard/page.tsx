@@ -38,6 +38,7 @@ const Dashboard = () => {
         style={{ objectFit: "cover" }}
         fill
         quality={100}
+        priority
       />
       <section className="container-content">
         <section className="container-seach-date">
