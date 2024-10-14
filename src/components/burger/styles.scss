@@ -101,13 +101,14 @@
             gap: 1rem;
             margin-bottom: 3rem;
             
-            a {
+            a, .logout-btn {
                 display: flex;
                 flex-flow: row-reverse nowrap;
                 justify-content: flex-start;
                 align-items: center;
                 width: 100%;
                 gap: .5rem;
+                background-color: transparent;
 
                 p {
                     font-size: 1rem;

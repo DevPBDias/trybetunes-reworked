@@ -51,10 +51,10 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       if (!checkStorage) {
         localStorage.setItem("trybetunes-users", JSON.stringify([]));
       } else {
-        const storedusers = JSON.parse(
+        const storedUsers = JSON.parse(
           localStorage.getItem("trybetunes-users") as any
         );
-        setUsers(storedusers);
+        setUsers(storedUsers);
       }
     };
     showStorage();

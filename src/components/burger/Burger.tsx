@@ -1,19 +1,26 @@
 "use client";
 
 import { useUserContext } from "@/context/user-provider";
-import { Home, Menu, Star, User2, X } from "lucide-react";
+import { Home, LogOut, Menu, Star, User2, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import logo from "@/assets/icons/logoTrybe.png";
 import user from "@/assets/images/user.png";
 import "./styles.scss";
+import { useRouter } from "next/navigation";
 
 const COLOR_ICON = "#001400";
 
 const Burger = () => {
+  const router = useRouter();
   const { userName, setUserName } = useUserContext();
   const [open, setOpen] = useState<boolean>(true);
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedUser");
+    router.push("/");
+  };
 
   const saveUser = async () => {
     const userLogin = await JSON.parse(
@@ -81,6 +88,10 @@ const Burger = () => {
               <Star size={24} color={COLOR_ICON} />
               <p>Favoritos</p>
             </Link>
+            <button className="logout-btn" onClick={handleLogout}>
+              <LogOut size={28} color={COLOR_ICON} />
+              <p>Sair</p>
+            </button>
           </nav>
         </section>
       )}
