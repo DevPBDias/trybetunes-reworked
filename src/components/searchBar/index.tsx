@@ -4,24 +4,28 @@ import { Search } from "lucide-react";
 import "./styles.scss";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { searchSchema } from "@/schemas";
+import { Form } from "../form";
 
-type FormData = z.infer<typeof searchSchema>;
+type SearchData = z.infer<typeof searchSchema>;
 
 const SearchBar = () => {
   const router = useRouter();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitSuccessful },
-    reset,
-  } = useForm<FormData>({
+  const searchForm = useForm<SearchData>({
     resolver: zodResolver(searchSchema),
   });
 
-  const handleSearch = (data: FormData) => {
+  const {
+    handleSubmit,
+    formState: { isSubmitSuccessful },
+    reset,
+  } = searchForm;
+
+  const handleSearch = (data: SearchData) => {
+    console.log(data, "clickou");
+
     if (isSubmitSuccessful) {
       reset({ search: "" });
     }
@@ -29,22 +33,21 @@ const SearchBar = () => {
   };
 
   return (
-    <form className="form-searchbar" onSubmit={handleSubmit(handleSearch)}>
-      <fieldset>
-        <input
-          className={`${errors.search ? "error-border" : ""}`}
-          type="text"
-          {...register("search")}
-          placeholder="Pesquise pelo seus artistas preferidos...."
-        />
-        {errors.search && (
-          <span className="error-msg">{errors.search.message}</span>
-        )}
-      </fieldset>
-      <button type="submit">
-        <Search size={24} color="#001400" />
-      </button>
-    </form>
+    <FormProvider {...searchForm}>
+      <form className="form-searchbar" onSubmit={handleSubmit(handleSearch)}>
+        <Form.Field>
+          <Form.Input
+            type="text"
+            name="search"
+            placeholder="Pesquise pelos seus artistas favoritos..."
+          />
+          <Form.ErrorMessage field="search" />
+        </Form.Field>
+        <Form.Button type="submit">
+          <Search size={24} color="#001400" />
+        </Form.Button>
+      </form>
+    </FormProvider>
   );
 };
 
