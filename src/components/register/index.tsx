@@ -7,26 +7,29 @@ import Image from "next/image";
 import Title from "../common/Title";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/schemas";
 import { useUserContext } from "@/context/user-provider";
 import { useState } from "react";
+import { Form } from "../form";
 
-type FormData = z.infer<typeof registerSchema>;
+type RegisterData = z.infer<typeof registerSchema>;
 
 const Register = () => {
   const router = useRouter();
   const { addStorage, checkEmailInStorage } = useUserContext();
   const [showMsg, setShowMsg] = useState<boolean>();
+
+  const registerForm = useForm<RegisterData>({
+    resolver: zodResolver(registerSchema),
+  });
+
   const {
-    register,
     handleSubmit,
     formState: { errors, isSubmitSuccessful },
     reset,
-  } = useForm<FormData>({
-    resolver: zodResolver(registerSchema),
-  });
+  } = registerForm;
 
   const resetForm = () => {
     if (isSubmitSuccessful) {
@@ -34,7 +37,7 @@ const Register = () => {
     }
   };
 
-  const handleClick = async (data: FormData) => {
+  const handleClick = async (data: RegisterData) => {
     if (await checkEmailInStorage(data.email)) {
       setShowMsg(true);
     } else {
@@ -45,83 +48,73 @@ const Register = () => {
   };
 
   return (
-    <form className="register-form" onSubmit={handleSubmit(handleClick)}>
-      <Title
-        title="Efetuar cadastro"
-        subtitle="Registre-se para desfrutar das melhores músicas do momento."
-      />
-      <section className="container-inputs">
-        <div className="container-user">
-          <fieldset className="container-field">
-            <label htmlFor="firstName">Nome</label>
-            <input
+    <FormProvider {...registerForm}>
+      <form className="register-form" onSubmit={handleSubmit(handleClick)}>
+        <Title
+          title="Efetuar cadastro"
+          subtitle="Registre-se para desfrutar das melhores músicas do momento."
+        />
+        <section className="container-inputs">
+          <div className="container-user">
+            <Form.Field className="container-field">
+              <Form.Label htmlFor="firstName">Nome</Form.Label>
+              <Form.Input
+                className={`${errors.firstName ? "error-border" : ""}`}
+                type="text"
+                name="firstName"
+              />
+              <Form.ErrorMessage field="firstName" />
+            </Form.Field>
+            <Form.Field className="container-field">
+              <Form.Label htmlFor="lastName">Sobrenome</Form.Label>
+              <Form.Input
+                className={`${errors.lastName ? "error-border" : ""}`}
+                type="text"
+                name="lastName"
+              />
+              <Form.ErrorMessage field="lastName" />
+            </Form.Field>
+          </div>
+          <Form.Field className="container-field">
+            <Form.Label htmlFor="email">E-mail</Form.Label>
+            <Form.Input
               className={`${errors.email ? "error-border" : ""}`}
               type="text"
-              {...register("firstName")}
-              id="firstName"
+              name="email"
             />
-            {errors.firstName && (
-              <span className="error-msg">{errors.firstName.message}</span>
-            )}
-          </fieldset>
-          <fieldset className="container-field">
-            <label htmlFor="lastName">Sobrenome</label>
-            <input
-              className={`${errors.email ? "error-border" : ""}`}
+            <Form.ErrorMessage field="email" />
+          </Form.Field>
+          <Form.Field className="container-field">
+            <Form.Label htmlFor="password">Senha</Form.Label>
+            <Form.Input
+              className={`${errors.password ? "error-border" : ""}`}
               type="text"
-              {...register("lastName")}
-              id="lastName"
+              name="password"
             />
-            {errors.lastName && (
-              <span className="error-msg">{errors.lastName.message}</span>
-            )}
-          </fieldset>
-        </div>
-        <fieldset className="container-field">
-          <label htmlFor="email">E-mail</label>
-          <input
-            className={`${errors.email ? "error-border" : ""}`}
-            type="text"
-            {...register("email")}
-            id="email"
-          />
-          {errors.email && (
-            <span className="error-msg">{errors.email.message}</span>
+            <Form.ErrorMessage field="password" />
+          </Form.Field>
+        </section>
+        <section className="container-btns">
+          <Form.Button className="main-btn" type="submit">
+            Cadastrar
+          </Form.Button>
+          <Form.Button className="google-btn" type="submit">
+            <p>Cadastrar com </p>
+            <Image
+              className="google-icon"
+              src={google}
+              alt="Google icon for login"
+            />
+          </Form.Button>
+          {showMsg && (
+            <span className="email-error-msg">E-mail já foi usado!</span>
           )}
-        </fieldset>
-        <fieldset className="container-field">
-          <label htmlFor="pwd">Senha</label>
-          <input
-            className={`${errors.email ? "error-border" : ""}`}
-            type="password"
-            {...register("password")}
-            id="pwd"
-          />
-          {errors.password && (
-            <span className="error-msg">{errors.password.message}</span>
-          )}
-        </fieldset>
-      </section>
-      <section className="container-btns">
-        <button className="main-btn" type="submit">
-          Cadastrar
-        </button>
-        <button className="google-btn" type="submit">
-          <p>Cadastrar com </p>
-          <Image
-            className="google-icon"
-            src={google}
-            alt="Google icon for register"
-          />
-        </button>
-        {showMsg && (
-          <span className="email-error-msg">E-mail já foi usado!</span>
-        )}
-      </section>
-      <Link className="redirect-link" href="/">
-        Já tem cadastro? Efetue o login por aqui.
-      </Link>
-    </form>
+        </section>
+        <Link className="redirect-link" href="/">
+          Já tem cadastro? Efetue o login por aqui.
+        </Link>
+      </form>
+    </FormProvider>
   );
 };
 
