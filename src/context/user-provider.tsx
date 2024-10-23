@@ -7,7 +7,6 @@ type IUser = {
   lastName: string;
   email: string;
   password: string;
-  address?: string;
 };
 interface UserProps {
   userName: string;
@@ -19,9 +18,8 @@ interface UserProps {
   addStorage: (key: string, value: IUser) => void;
   removeStorage: (key: string, value: string) => void;
   checkEmailInStorage: (value: string) => Promise<boolean>;
-  loginValidation: (value: { email: string; password: string }) => Promise<{
-    checkedPwd: boolean;
-    checkedUser: any;
+  loginValidation: (email: string) => Promise<{
+    checkedUser: IUser[] | [];
   }>;
 }
 
@@ -76,21 +74,16 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     return checkedUser;
   };
 
-  const loginValidation = async (value: {
-    email: string;
-    password: string;
-  }) => {
-    const storedUsers = await JSON.parse(
+  const loginValidation = async (email: string) => {
+    const storedUsers: IUser[] = await JSON.parse(
       localStorage.getItem("trybetunes-users") as any
     );
 
-    const checkedUser = storedUsers.filter(
-      (user: any) => user.email === value.email
+    const checkedUser: IUser[] = storedUsers.filter(
+      (user: any) => user.email === email
     );
 
-    const checkedPwd: boolean = checkedUser[0].password === value.password;
-
-    return { checkedPwd, checkedUser };
+    return { checkedUser };
   };
 
   const removeStorage = (key: string, value: string) => {

@@ -1,7 +1,7 @@
 import { LabelHTMLAttributes } from "react";
 
 const Label = (props: LabelHTMLAttributes<HTMLLabelElement>) => {
-  return <label className="container-field" {...props} />;
+  return <label {...props} />;
 };
 
 export default Label;

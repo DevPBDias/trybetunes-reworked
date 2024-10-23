@@ -19,13 +19,11 @@ const SearchBar = () => {
 
   const {
     handleSubmit,
-    formState: { isSubmitSuccessful },
+    formState: { isSubmitSuccessful, errors },
     reset,
   } = searchForm;
 
   const handleSearch = (data: SearchData) => {
-    console.log(data, "clickou");
-
     if (isSubmitSuccessful) {
       reset({ search: "" });
     }
@@ -37,6 +35,7 @@ const SearchBar = () => {
       <form className="form-searchbar" onSubmit={handleSubmit(handleSearch)}>
         <Form.Field>
           <Form.Input
+            className={`${errors.search ? "error-border" : ""}`}
             type="text"
             name="search"
             placeholder="Pesquise pelos seus artistas favoritos..."

@@ -6,17 +6,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export default function Input(props: InputProps) {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
+  const { register } = useFormContext();
 
-  return (
-    <input
-      className={`${errors.search ? "error-border" : ""}`}
-      id={props.name}
-      {...register(props.name)}
-      {...props}
-    />
-  );
+  return <input id={props.name} {...register(props.name)} {...props} />;
 }
