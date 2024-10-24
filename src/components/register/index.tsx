@@ -10,15 +10,15 @@ import { z } from "zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/schemas";
-import { useUserContext } from "@/context/user-provider";
 import { useState } from "react";
 import { Form } from "../form";
+import useStorage from "@/hooks/useStorage";
 
 type RegisterData = z.infer<typeof registerSchema>;
 
 const Register = () => {
   const router = useRouter();
-  const { addStorage, checkEmailInStorage } = useUserContext();
+  const { addUser, checkEmailInStorage } = useStorage();
   const [showMsg, setShowMsg] = useState<boolean>();
 
   const registerForm = useForm<RegisterData>({
@@ -41,7 +41,7 @@ const Register = () => {
     if (await checkEmailInStorage(data.email)) {
       setShowMsg(true);
     } else {
-      addStorage("trybetunes-users", data);
+      addUser("trybetunes-users", data);
       resetForm();
       router.push("/");
     }

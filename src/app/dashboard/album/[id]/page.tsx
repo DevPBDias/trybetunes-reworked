@@ -11,10 +11,11 @@ import Loader from "../../loading";
 import "./styles.scss";
 import { Star, StarOff } from "lucide-react";
 import { useMusicContext } from "@/context/music-provider";
+import useStorage from "@/hooks/useStorage";
 
 const AlbumID = ({ params }: { params: { id: string } }) => {
-  const { addNewAlbum, addStorage, removeAlbum, removeStorage } =
-    useMusicContext();
+  const { addNewAlbum, removeOldAlbum } = useMusicContext();
+  const { addAlbum, removeAlbum } = useStorage();
   const { id } = params;
   const [album, setAlbum] = useState<any>();
   const [songs, setSongs] = useState<any>();
@@ -64,14 +65,14 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
       albumName: album[0].collectionName,
       artistName: album[0].artistName,
     };
-    addStorage("favorite-albums", formatAlbum);
+    addAlbum("favorite-albums", formatAlbum);
     addNewAlbum(formatAlbum);
     setStarOn(!starOn);
   };
 
   const handleRemoveFavorite = () => {
-    removeStorage("favorite-albums", album[0].collectionId);
-    removeAlbum(album[0].collectionId);
+    removeAlbum("favorite-albums", album[0].collectionId);
+    removeOldAlbum(album[0].collectionId);
     setStarOn(!starOn);
   };
 

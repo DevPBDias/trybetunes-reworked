@@ -11,19 +11,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/schemas";
 import Title from "../common/Title";
 import Separator from "./Separator";
-import { useUserContext } from "@/context/user-provider";
 import { useState } from "react";
 import { Form } from "../form";
+import useValidation from "@/hooks/useValidation";
 
 type UserData = z.infer<typeof loginSchema>;
 
 const Login = () => {
   const router = useRouter();
-  const { loginValidation } = useUserContext();
+  const { loginValidation } = useValidation();
   const [showMsg, setShowMsg] = useState<boolean>();
   const createUserForm = useForm<UserData>({
     resolver: zodResolver(loginSchema),
   });
+
   const {
     handleSubmit,
     formState: { errors, isSubmitSuccessful },
@@ -37,11 +38,12 @@ const Login = () => {
   };
 
   const handleClick = async (data: UserData) => {
-    const checkedData = await loginValidation(data.email);
-    if (checkedData.checkedUser.length !== 0) {
+    const validation = await loginValidation(data.email, data.password);
+
+    if (validation.checkedUser && validation.checkedPwd) {
       localStorage.setItem(
         "loggedUser",
-        JSON.stringify(checkedData.checkedUser[0])
+        JSON.stringify(validation?.filteredUser)
       );
       resetForm();
       router.push("/dashboard");

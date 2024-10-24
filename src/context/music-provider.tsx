@@ -15,9 +15,7 @@ interface MusicProps {
   favorites: IAlbum[];
   setFavorites: React.Dispatch<React.SetStateAction<IAlbum[]>>;
   addNewAlbum: (newAlbum: IAlbum) => void;
-  removeAlbum: (album: number) => void;
-  addStorage: (key: string, value: IAlbum) => void;
-  removeStorage: (key: string, value: number) => void;
+  removeOldAlbum: (album: number) => void;
 }
 
 export const MusicContext = createContext<MusicProps | undefined>(undefined);
@@ -34,7 +32,7 @@ export const MusicProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const removeAlbum = (album: number) => {
+  const removeOldAlbum = (album: number) => {
     const newFavorites = favorites.filter((item) => item.albumId !== album);
     setFavorites(newFavorites);
   };
@@ -55,20 +53,6 @@ export const MusicProvider = ({ children }: { children: React.ReactNode }) => {
     showStorage();
   }, []);
 
-  const addStorage = (key: string, value: IAlbum) => {
-    const storage = JSON.parse(localStorage.getItem(key) as string);
-    storage?.push(value);
-    localStorage.setItem(key, JSON.stringify(storage));
-  };
-
-  const removeStorage = (key: string, value: number) => {
-    const checkStorage = JSON.parse(localStorage.getItem(key) as any);
-    const newStorage = checkStorage?.filter(
-      (item: IAlbum) => item.albumId !== value
-    );
-    localStorage.setItem(key, JSON.stringify(newStorage));
-  };
-
   return (
     <MusicContext.Provider
       value={{
@@ -77,9 +61,7 @@ export const MusicProvider = ({ children }: { children: React.ReactNode }) => {
         searchedAlbums,
         setSearchedAlbums,
         addNewAlbum,
-        removeAlbum,
-        addStorage,
-        removeStorage,
+        removeOldAlbum,
       }}
     >
       {children}

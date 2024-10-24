@@ -1,6 +1,5 @@
 "use client";
 
-import { useUserContext } from "@/context/user-provider";
 import { Home, LogOut, Menu, Star, User2, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,27 +8,18 @@ import logo from "@/assets/icons/logoTrybe.png";
 import user from "@/assets/images/user.png";
 import "./styles.scss";
 import { useRouter } from "next/navigation";
+import useConcatName from "@/hooks/useConcatName";
 
 const COLOR_ICON = "#001400";
 
 const Burger = () => {
   const router = useRouter();
-  const { userName, setUserName } = useUserContext();
+  const { userName, saveUser } = useConcatName();
   const [open, setOpen] = useState<boolean>(true);
 
   const handleLogout = () => {
     localStorage.removeItem("loggedUser");
     router.push("/");
-  };
-
-  const saveUser = async () => {
-    const userLogin = await JSON.parse(
-      localStorage.getItem("loggedUser") as any
-    );
-    if (userLogin) {
-      const concatName = userLogin.firstName.concat(" ", userLogin.lastName);
-      setUserName(concatName);
-    }
   };
 
   useEffect(() => {
