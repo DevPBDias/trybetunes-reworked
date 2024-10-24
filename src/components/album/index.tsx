@@ -1,5 +1,5 @@
 "use client";
-import { EllipsisIcon, PlayCircle, Heart } from "lucide-react";
+import { PlayCircle } from "lucide-react";
 import "./styles.scss";
 import { useRouter } from "next/navigation";
 interface PlayerProps {

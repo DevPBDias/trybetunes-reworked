@@ -7,8 +7,7 @@ import user from "@/assets/images/user.png";
 import Link from "next/link";
 import { ArrowLeftCircleIcon, Home, User2, Star, LogOut } from "lucide-react";
 import { useUserContext } from "@/context/user-provider";
-import { redirect, useRouter } from "next/navigation";
-import useConcatName from "@/hooks/useConcatName";
+import { useRouter } from "next/navigation";
 
 const COLOR_ICON = "#001400";
 
@@ -18,12 +17,22 @@ interface SidebarProps {
 }
 
 const FullSidebar = ({ open, setOpen }: SidebarProps) => {
-  const { userName, saveUser } = useConcatName();
   const router = useRouter();
+  const { userName, setUserName } = useUserContext();
 
   const handleLogout = () => {
     localStorage.removeItem("loggedUser");
     router.push("/");
+  };
+
+  const saveUser = async () => {
+    const [userLogin] = await JSON.parse(
+      localStorage.getItem("loggedUser") as any
+    );
+    if (userLogin) {
+      const concatName = userLogin.firstName.concat(" ", userLogin.lastName);
+      setUserName(concatName);
+    }
   };
 
   useEffect(() => {

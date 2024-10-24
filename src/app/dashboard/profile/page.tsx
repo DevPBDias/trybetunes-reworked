@@ -24,14 +24,13 @@ const ProfilePage = () => {
   });
 
   const {
-    register,
     handleSubmit,
     formState: { errors, isSubmitSuccessful },
     reset,
   } = profileForm;
 
   const handleEdit = (data: ProfileData) => {
-    localStorage.setItem("loggedUser", JSON.stringify(data));
+    localStorage.setItem("loggedUser", JSON.stringify([data]));
     localStorage.setItem("trybetunes-users", JSON.stringify(data));
     const joinName = data.firstName.concat(" ", data.lastName);
     setUserName(joinName);
