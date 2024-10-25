@@ -34,9 +34,11 @@ const useStorage = () => {
     const storedUsers = await JSON.parse(
       localStorage.getItem("trybetunes-users") as any
     );
-    const checkedUser: boolean = storedUsers.find(
-      (user: any) => user.email === value
+
+    const checkedUser: boolean = storedUsers?.some(
+      (user: IUser) => user.email === value
     );
+
     return checkedUser;
   };
 

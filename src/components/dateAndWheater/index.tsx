@@ -1,22 +1,9 @@
-"use client";
-
 import { Sun, Calendar } from "lucide-react";
 import "./styles.scss";
-import { getTodayDate } from "@/utils";
-import getPMWData from "@/services/wheaterData";
-import { useEffect, useState } from "react";
+import useWeatherDate from "@/hooks/useWeatherDate";
 
 const DateAndWheater = () => {
-  const [weatherData, setWheaterData] = useState<any>();
-  const [date, setDate] = useState<any>();
-
-  useEffect(() => {
-    const savingDateAndWheater = async () => {
-      setWheaterData(await getPMWData());
-      setDate(getTodayDate());
-    };
-    savingDateAndWheater();
-  }, []);
+  const [weatherData, date] = useWeatherDate();
 
   return (
     <section className="container-info">
