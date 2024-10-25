@@ -1,23 +1,9 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { IUser, UserProps } from "@/types/user.types";
+import React, { createContext, useContext, useState } from "react";
 
-type IUser = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-};
-interface UserProps {
-  userName: string;
-  setUserName: React.Dispatch<React.SetStateAction<string>>;
-  users: IUser[];
-  setUsers: React.Dispatch<React.SetStateAction<IUser[]>>;
-  addNewUser: (newUser: IUser) => void;
-  removeUser: (email: string) => void;
-}
-
-export const UserContext = createContext<UserProps | undefined>(undefined);
+export const UserContext = createContext({} as UserProps);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [userName, setUserName] = useState("");

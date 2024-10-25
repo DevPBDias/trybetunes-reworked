@@ -2,19 +2,9 @@
 import { PlayCircle } from "lucide-react";
 import "./styles.scss";
 import { useRouter } from "next/navigation";
-interface PlayerProps {
-  albumImg: string;
-  albumName: string;
-  artistName: string;
-  albumId: string;
-}
+import { IAlbum } from "@/types/music.types";
 
-const AlbumCard = ({
-  artistName,
-  albumImg,
-  albumName,
-  albumId,
-}: PlayerProps) => {
+const AlbumCard = ({ artistName, albumImg, albumName, albumId }: IAlbum) => {
   const router = useRouter();
 
   return (

@@ -12,13 +12,14 @@ import "./styles.scss";
 import { Star, StarOff } from "lucide-react";
 import { useMusicContext } from "@/context/music-provider";
 import useStorage from "@/hooks/useStorage";
+import { IArtist } from "@/types/music.types";
 
 const AlbumID = ({ params }: { params: { id: string } }) => {
   const { addNewAlbum, removeOldAlbum } = useMusicContext();
   const { addAlbum, removeAlbum } = useStorage();
   const { id } = params;
   const [album, setAlbum] = useState<any>();
-  const [songs, setSongs] = useState<any>();
+  const [songs, setSongs] = useState<IArtist[]>();
   const [related, setRelated] = useState<any>();
   const [starOn, setStarOn] = useState<boolean>();
 

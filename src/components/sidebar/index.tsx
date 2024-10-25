@@ -6,7 +6,7 @@ import ShortSidebar from "./ShortSidebar";
 import "./styles.scss";
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState<boolean>(true);
 
   return (
     <aside>

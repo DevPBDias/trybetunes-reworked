@@ -6,17 +6,14 @@ import user from "@/assets/images/user.png";
 import Link from "next/link";
 import { ArrowLeftCircleIcon, Home, User2, Star, LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { SidebarProps } from "@/types/user.types";
 
 const COLOR_ICON = "#001400";
-interface SidebarProps {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
 const ShortSidebar = ({ open, setOpen }: SidebarProps) => {
   const router = useRouter();
 
-  const handleLogout = () => {
+  const handleLogout: () => void = () => {
     localStorage.removeItem("loggedUser");
     router.push("/");
   };

@@ -1,6 +1,7 @@
+import { IArtist } from "@/types/music.types";
 import "./styles.scss";
 
-const PlayerCard = ({ data }: any) => {
+const PlayerCard = ({ data }: any | IArtist[]) => {
   return (
     <>
       {data?.length === 0 ? (

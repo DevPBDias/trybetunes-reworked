@@ -1,4 +1,3 @@
-import React from "react";
 import { MusicProvider } from "./music-provider";
 import { UserProvider } from "./user-provider";
 

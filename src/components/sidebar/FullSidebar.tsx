@@ -8,24 +8,20 @@ import Link from "next/link";
 import { ArrowLeftCircleIcon, Home, User2, Star, LogOut } from "lucide-react";
 import { useUserContext } from "@/context/user-provider";
 import { useRouter } from "next/navigation";
+import { SidebarProps } from "@/types/user.types";
 
 const COLOR_ICON = "#001400";
-
-interface SidebarProps {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
 const FullSidebar = ({ open, setOpen }: SidebarProps) => {
   const router = useRouter();
   const { userName, setUserName } = useUserContext();
 
-  const handleLogout = () => {
+  const handleLogout: () => void = () => {
     localStorage.removeItem("loggedUser");
     router.push("/");
   };
 
-  const saveUser = async () => {
+  const saveUser: () => Promise<void> = async () => {
     const [userLogin] = await JSON.parse(
       localStorage.getItem("loggedUser") as any
     );

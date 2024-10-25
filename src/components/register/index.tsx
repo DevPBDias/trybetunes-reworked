@@ -31,13 +31,13 @@ const Register = () => {
     reset,
   } = registerForm;
 
-  const resetForm = () => {
+  const resetForm: () => void = () => {
     if (isSubmitSuccessful) {
       reset({ email: "", password: "", firstName: "", lastName: "" });
     }
   };
 
-  const handleClick = async (data: RegisterData) => {
+  const handleClick: (data: RegisterData) => Promise<void> = async (data) => {
     if (await checkEmailInStorage(data.email)) {
       setShowMsg(true);
     } else {

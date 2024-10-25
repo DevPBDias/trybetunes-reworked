@@ -1,24 +1,9 @@
 "use client";
 
-import { IArtist } from "@/services/musicData";
+import { IAlbum, MusicProps } from "@/types/music.types";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type IAlbum = {
-  albumId: number;
-  albumImg: string;
-  albumName: string;
-  artistName: string;
-};
-interface MusicProps {
-  searchedAlbums: IArtist[];
-  setSearchedAlbums: React.Dispatch<React.SetStateAction<IArtist[]>>;
-  favorites: IAlbum[];
-  setFavorites: React.Dispatch<React.SetStateAction<IAlbum[]>>;
-  addNewAlbum: (newAlbum: IAlbum) => void;
-  removeOldAlbum: (album: number) => void;
-}
-
-export const MusicContext = createContext<MusicProps | undefined>(undefined);
+export const MusicContext = createContext({} as MusicProps);
 
 export const MusicProvider = ({ children }: { children: React.ReactNode }) => {
   const [favorites, setFavorites] = useState<IAlbum[]>([]);

@@ -23,7 +23,7 @@ const SearchBar = () => {
     reset,
   } = searchForm;
 
-  const handleSearch = (data: SearchData) => {
+  const handleSearch: (data: SearchData) => void = (data) => {
     if (isSubmitSuccessful) {
       reset({ search: "" });
     }
