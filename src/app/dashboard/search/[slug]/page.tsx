@@ -8,6 +8,7 @@ import { searchAlbumsAPI } from "@/services/musicData";
 import Loader from "../../loading";
 import "./search.scss";
 import { useMusicContext } from "@/context/music-provider";
+import { IArtist } from "@/types/music.types";
 
 const SearchPage = ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
@@ -34,14 +35,8 @@ const SearchPage = ({ params }: { params: { slug: string } }) => {
       <h3>Resultado da pesquisa: {slug}</h3>
       {searchedAlbums && (
         <section className="container-albums">
-          {searchedAlbums?.map((album: any) => (
-            <AlbumCard
-              key={album.collectionId}
-              albumId={album.collectionId}
-              albumImg={album.artworkUrl100}
-              albumName={album.collectionName}
-              artistName={album.artistName}
-            />
+          {searchedAlbums?.map((album: IArtist) => (
+            <AlbumCard key={album.collectionId} data={album} />
           ))}
         </section>
       )}
