@@ -11,8 +11,6 @@ interface AlbumProps {
 const AlbumCard = ({ data }: AlbumProps) => {
   const router = useRouter();
 
-  console.log(data);
-
   return (
     <section
       className="container-card"
