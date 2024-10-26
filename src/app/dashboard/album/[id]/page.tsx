@@ -11,7 +11,7 @@ import "./styles.scss";
 import { Star, StarOff } from "lucide-react";
 import { useMusicContext } from "@/context/music-provider";
 import useStorage from "@/hooks/useStorage";
-import { IArtist } from "@/types/music.types";
+import { ISong } from "@/types/music.types";
 import PlayerList from "@/components/player";
 
 const AlbumID = ({ params }: { params: { id: string } }) => {
@@ -19,7 +19,7 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
   const { addAlbum, removeAlbum } = useStorage();
   const { id } = params;
   const [album, setAlbum] = useState<any>();
-  const [songs, setSongs] = useState<IArtist[]>();
+  const [songs, setSongs] = useState<ISong[]>();
   const [related, setRelated] = useState<any>();
   const [starOn, setStarOn] = useState<boolean>();
 
@@ -99,13 +99,7 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
             <div className="container-related">
               {related &&
                 related?.map((album: any) => (
-                  <AlbumCard
-                    key={album.collectionId}
-                    albumId={album.collectionId}
-                    albumImg={album.artworkUrl100}
-                    albumName={album.collectionName}
-                    artistName={album.artistName}
-                  />
+                  <AlbumCard key={album.collectionId} data={album} />
                 ))}
             </div>
           </div>

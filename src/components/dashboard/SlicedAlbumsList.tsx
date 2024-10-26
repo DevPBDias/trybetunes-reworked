@@ -4,11 +4,7 @@ import { IArtist } from "@/types/music.types";
 import AlbumCard from "../album";
 
 const SlicedAlbumsList = () => {
-  const { data, isLoading } = useFetchDashboard();
-
-  if (isLoading) {
-    return <div className="container-cards">Carregando .....</div>;
-  }
+  const { data } = useFetchDashboard();
 
   return (
     <div className="container-cards">
