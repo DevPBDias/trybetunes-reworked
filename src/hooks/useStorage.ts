@@ -9,7 +9,7 @@ const useStorage = () => {
   };
 
   const removeAlbum = (key: string, value: number) => {
-    const checkStorage = JSON.parse(localStorage.getItem(key) as any);
+    const checkStorage = JSON.parse(localStorage.getItem(key) as string);
     const newStorage = checkStorage?.filter(
       (item: IAlbum) => item.albumId !== value
     );
@@ -23,16 +23,18 @@ const useStorage = () => {
   };
 
   const removeUser = (key: string, value: string) => {
-    const checkStorage = JSON.parse(localStorage.getItem(key) as any);
+    const checkStorage = JSON.parse(localStorage.getItem(key) as string);
     const newStorage = checkStorage?.filter(
       (item: IUser) => item.email !== value
     );
     localStorage.setItem(key, JSON.stringify(newStorage));
   };
 
-  const checkEmailInStorage = async (value: string) => {
+  const checkEmailInStorage: (value: string) => Promise<boolean> = async (
+    value
+  ) => {
     const storedUsers = await JSON.parse(
-      localStorage.getItem("trybetunes-users") as any
+      localStorage.getItem("trybetunes-users") as string
     );
 
     const checkedUser: boolean = storedUsers?.some(

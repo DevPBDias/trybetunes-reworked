@@ -5,7 +5,6 @@ import SearchBar from "@/components/searchBar";
 import { useEffect, useState } from "react";
 import { getMusics, searchAlbumsAPI } from "@/services/musicData";
 import { getYearReleased } from "@/utils";
-import PlayerCard from "@/components/player";
 import AlbumCard from "@/components/album";
 import Loader from "../../loading";
 import "./styles.scss";
@@ -13,6 +12,7 @@ import { Star, StarOff } from "lucide-react";
 import { useMusicContext } from "@/context/music-provider";
 import useStorage from "@/hooks/useStorage";
 import { IArtist } from "@/types/music.types";
+import PlayerList from "@/components/player";
 
 const AlbumID = ({ params }: { params: { id: string } }) => {
   const { addNewAlbum, removeOldAlbum } = useMusicContext();
@@ -144,7 +144,7 @@ const AlbumID = ({ params }: { params: { id: string } }) => {
             </div>
           )}
           <div className="container-musics">
-            {songs && <PlayerCard data={songs} />}
+            {songs && <PlayerList data={songs} />}
           </div>
         </section>
       </section>

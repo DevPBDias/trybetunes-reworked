@@ -1,7 +1,8 @@
-import { IArtist } from "@/types/music.types";
+import { ISong } from "@/types/music.types";
 import "./styles.scss";
+import PlayerCard from "./PlayerCard";
 
-const PlayerCard = ({ data }: any | IArtist[]) => {
+const PlayerList = ({ data }: any | ISong[]) => {
   return (
     <>
       {data?.length === 0 ? (
@@ -9,17 +10,7 @@ const PlayerCard = ({ data }: any | IArtist[]) => {
       ) : (
         <section className="container-music-player">
           {data?.map((music: any, index: number) => (
-            <div className="container-song" key={index}>
-              <p>{music.trackName}</p>
-              <audio
-                className="container-audio"
-                src={music.previewUrl}
-                controls
-              >
-                <track kind="captions" />O seu navegador não suporta o elemento
-                <code>audio</code>.
-              </audio>
-            </div>
+            <PlayerCard music={music} index={index} />
           ))}
         </section>
       )}
@@ -27,4 +18,4 @@ const PlayerCard = ({ data }: any | IArtist[]) => {
   );
 };
 
-export default PlayerCard;
+export default PlayerList;
