@@ -1,7 +1,7 @@
 "use client";
 
 import DateAndWheater from "@/components/dateAndWheater";
-import SearchBar from "@/components/searchBar";
+import SearchBar from "@/components/search/SearchBar";
 import { useEffect, useState } from "react";
 import { getMusics, searchAlbumsAPI } from "@/services/musicData";
 import { getYearReleased } from "@/utils";

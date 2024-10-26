@@ -1,5 +1,5 @@
 import DateAndWheater from "@/components/dateAndWheater";
-import SearchBar from "@/components/searchBar";
+import SearchBar from "@/components/search/SearchBar";
 import Image from "next/image";
 import heroImg from "@/assets/images/main-hero.png";
 import DashboardTitle from "@/components/dashboard/DashboardTitle";

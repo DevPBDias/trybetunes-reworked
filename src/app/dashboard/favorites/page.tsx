@@ -1,5 +1,5 @@
 import DateAndWheater from "@/components/dateAndWheater";
-import SearchBar from "@/components/searchBar";
+import SearchBar from "@/components/search/SearchBar";
 import FavoriteList from "@/components/favorites/FavoriteList";
 import "./favorites.scss";
 

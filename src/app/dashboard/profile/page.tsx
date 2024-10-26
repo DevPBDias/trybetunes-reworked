@@ -1,7 +1,7 @@
 "use client";
 
 import DateAndWheater from "@/components/dateAndWheater";
-import SearchBar from "@/components/searchBar";
+import SearchBar from "@/components/search/SearchBar";
 import user from "@/assets/images/user-big.png";
 import Image from "next/image";
 import { Clipboard, Save } from "lucide-react";

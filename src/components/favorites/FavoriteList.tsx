@@ -8,7 +8,7 @@ import Loader from "@/app/dashboard/loading";
 const FavoriteList = () => {
   const { favorites, isLoading } = useFetchFavorites();
 
-  if (!favorites) {
+  if (isLoading) {
     return <Loader />;
   }
 
