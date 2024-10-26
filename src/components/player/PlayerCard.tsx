@@ -2,12 +2,11 @@ import { ISong } from "@/types/music.types";
 
 interface CardProps {
   music: ISong;
-  index: number;
 }
 
-const PlayerCard = ({ music, index }: CardProps) => {
+const PlayerCard = ({ music }: CardProps) => {
   return (
-    <div className="container-song" key={index}>
+    <div className="container-song">
       <p>{music.trackName}</p>
       <audio className="container-audio" src={music.previewUrl} controls>
         <track kind="captions" />O seu navegador não suporta o elemento

@@ -1,3 +1,5 @@
+"use client";
+
 import { Sun, Calendar } from "lucide-react";
 import "./styles.scss";
 import useWeatherDate from "@/hooks/useWeatherDate";
