@@ -2,32 +2,26 @@
 import { PlayCircle } from "lucide-react";
 import "./styles.scss";
 import { useRouter } from "next/navigation";
-import { IArtist } from "@/types/music.types";
+import { IAlbum } from "@/types/music.types";
 
-interface AlbumProps {
-  data: IArtist;
+interface FavoriteProps {
+  data: IAlbum;
 }
 
-const AlbumCard = ({ data }: AlbumProps) => {
+const FavoriteCard = ({ data }: FavoriteProps) => {
   const router = useRouter();
-
-  console.log(data);
 
   return (
     <section
       className="container-card"
-      onClick={() => router.push(`/dashboard/album/${data.collectionId}`)}
+      onClick={() => router.push(`/dashboard/album/${data.albumId}`)}
     >
       <div className="first-content">
         <picture className="container-album-image">
-          <img
-            className="album-image"
-            src={data.artworkUrl100}
-            alt="album image"
-          />
+          <img className="album-image" src={data.albumImg} alt="album image" />
         </picture>
         <div className="text-content">
-          <p>{data.collectionName}</p>
+          <p>{data.albumName}</p>
           <span>{data.artistName}</span>
           <div className="second-container">
             <PlayCircle className="icon" size={32} color="#EBFFEB" />
@@ -38,4 +32,4 @@ const AlbumCard = ({ data }: AlbumProps) => {
   );
 };
 
-export default AlbumCard;
+export default FavoriteCard;
