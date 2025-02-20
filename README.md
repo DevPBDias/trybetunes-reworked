@@ -121,11 +121,11 @@
 - Execute o comando para clonar o repositório:
 
     ```bash
-    git@github.com:DevPBDias/legaplan-teste-tecnico.git
+    git@github.com:DevPBDias/trybetunes-reworked.git
     ```
 - Após clonar o repositório, navegue até a pasta do projeto
     ```bash
-    cd legaplan-teste-tecnico
+    cd trybetunes-reworked
     ```
 
 - Agora você pode abrir os arquivos do projeto com seu editor de texto ou IDE preferido. Exemplo do vsCode: 
